@@ -1,0 +1,14 @@
+
+/* nav bar css*/
+.navbar-custom {
+    background-color: #4CAF50; /* Green background */
+}
+.navbar-custom .navbar-brand img {
+    height: 40px;
+}
+.navbar-custom .nav-link {
+    color: white;
+}
+.navbar-custom .nav-link:hover {
+    color: #d4d4d4;
+}
