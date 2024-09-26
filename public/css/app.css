@@ -365,3 +365,43 @@ ul li:hover > ul {
     color: #000;
     background-color: #918888;
 }
+
+.hotel-container {
+    width: 80%;
+    margin: auto;
+    margin-top: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+}
+
+.hotel-container h1 {
+    font-size: 2em;
+    color: #333;
+}
+
+.hotel-container p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.hotel-images img {
+    width: 30%;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.btn-reserve {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-reserve:hover {
+    background-color: #218838;
+}

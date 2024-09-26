@@ -11,6 +11,8 @@ use App\Http\Controllers\platController;
 use App\Http\Controllers\ReserHCntroller;
 use App\Http\Controllers\reservationVController;
 use App\Http\Controllers\PlatRestauController;
+use App\Http\Controllers\confirmEmailController;
+
 
 
 
@@ -26,7 +28,7 @@ Route::post('/login', [UserController::class, 'login'])->middleware('guest');
 Route::get('/dashboard', [UserController::class, 'show'])->name('dashboard')->middleware(['admin','auth']);
 Route::get('/showclient', [UserController::class, 'showclient'])->name('showclient')->middleware(['admin','auth']);
 Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware(['admin','auth']);
-
+Route::get('/verify_email/{hash}', [UserController::class, 'verifyemail']);
 
 Route::get('/signup', [UserController::class, 'create'])->name('signup')->middleware('guest');
 Route::post('/users', [UserController::class, 'store'])->name('users.store')->middleware('guest');
@@ -99,3 +101,6 @@ Route::delete('/reservationv/{id}', [reservationVController::class, 'destroy'])-
 Route::get('/addplat/{id}', [PlatRestauController::class, 'show'])->name('addplt.show')->middleware('auth');
 Route::get('/addplat/store/{id_plat}/{id_rest}', [PlatRestauController::class, 'store'])->name('addplt.store')->middleware('auth');
 Route::delete('/addplat/{id_plat}/{id_rest}', [PlatRestauController::class, 'destroy'])->name('addplt.destroy')->middleware('auth');
+
+
+Route::get('/confirmation', [confirmEmailController::class, 'index'])->name('confirmation_email');

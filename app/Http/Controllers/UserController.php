@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use App\Mail\ProfileMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -37,6 +38,28 @@ class UserController extends Controller
         {
             return view('auth.signup');
         }
+
+        private function  sendConfirmation($user){
+            Mail::to('barrimohamed01@gmail.com')->send(new ProfileMail($user));
+
+        }
+
+        public function  verifyemail(String $hash){
+            $decodedHash = base64_decode($hash);
+            $parts = explode('//', $decodedHash);
+            [$date, $id] = $parts; 
+            $user = User::findOrFail($id);
+            $name= $user->name;
+            $email= $user->email;
+
+
+            $user->fill([
+                'email_verified_at'=>now()
+            ])->save();
+          //  return view('admin.emailverified',compact('name','email'));
+         
+          return view('admin.emails.verify',compact('name','email'));
+        }
         public function store(Request $request)
     {
         $request->validate([
@@ -44,15 +67,20 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
         ]);
-
+       
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
 
+
+        $this->sendConfirmation($user);
+        // Send the email with the user instance
+        //Mail::to('barrimohamed01@gmail.com')->send(new ProfileMail($user));
+       
         return redirect()->route('login')->with('success', 'Account created successfully.');
-    }
+}
     public function login(Request $request)
     {
         $request->validate([

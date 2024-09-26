@@ -17,12 +17,35 @@
   @endphp
 
 
-  <a href="{{route('reserver_hotel' ,$hotels->id_hotel)}}"> <h2>{{  $hotels->id_hotel}}</h2></a>
-  
-   @php
-    }
-   @endphp
-
+ 
+<div class="hotel-container">
+    <!-- Hotel Title -->
+    <h1>{{ $hotels->nom }}</h1>
+    
+    <p><strong>Ville:</strong> {{ $hotels->ville }}</p>
+    
+    
+    <p><strong>Classe:</strong> {{ $hotels->classe }} stars</p>
+    
+    <!-- Price -->
+    <p><strong>Prix par nuit:</strong> {{ $hotels->prix }} MAD</p>
+    
+    <!-- Hotel Images -->
+    <div class="hotel-images">
+        @if($hotels->img1)
+            <img src="{{ asset($hotels->img1) }}" alt="Hotel Image 1">
+        @endif
+    
+    </div>
+    
+    <!-- Reserve Button -->
+    <a href="{{ route('reserver_hotel', $hotels->id_hotel) }}" class="btn-reserve">Reserve Now</a>
+ 
+   
+</div>
+@php
+}
+@endphp
     </div>
         @include('layouts.footer')
     </div>

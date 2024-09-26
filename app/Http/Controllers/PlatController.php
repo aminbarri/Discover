@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PlatRequest;
 use Illuminate\Http\Request;
 use App\Models\plat;
 use Illuminate\Support\Facades\Auth;
@@ -29,14 +30,8 @@ class PlatController extends Controller
         return view('admin.plat.plat');
     }
 
-    public function store(Request $request){
-        $request->validate([
-            'nom' => 'required|string|max:100',
-            'description' => 'required|string|max:1000',
-            'img1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'img2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'img3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+    public function store(PlatRequest $request){
+        $request->validated();
         
      $plat = new plat();
      $plat-> id_plat	 = $request->id_plat;
@@ -80,13 +75,7 @@ public function edit($id_plat){
 
 public function update(Request $request ,$id_plat){
 
-    $request->validate([
-        'nom' => 'required|string|max:100',
-        'description' => 'required|string|max:1000',
-        'img1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'img2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'img3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    ]);
+    $request->validated();
     $updateData = [];
     if ($request->hasFile('img1')) {
         $img1 = $request->file('img1');

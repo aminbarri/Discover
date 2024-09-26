@@ -31,13 +31,13 @@
 
         <div class="form-group">
             <label for="nom">Nom</label>
-            <input type="text" class="form-control" id="nom" name="nom" value="{{ old('nom') }}" required>
+            <input type="text" class="form-control" id="nom" name="nom" value="{{ old('nom') }}" >
          
         </div>
 
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control " id="description" name="description" rows="3" required>{{ old('description') }}</textarea>
+            <textarea class="form-control " id="description" name="description" rows="3" >{{ old('description') }}</textarea>
            
         </div>
 

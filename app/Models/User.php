@@ -16,6 +16,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'type',
+        'email_verified_at'
     ];
 
     protected $hidden = [
@@ -24,7 +26,7 @@ class User extends Authenticatable
     ];
 
    
-    protected $dates = ['created_at', 'updated_at'];
+    protected $dates = ['created_at', 'updated_at','email_verified_at'];
     // Or alternatively
     protected $casts = [
         'created_at' => 'datetime',

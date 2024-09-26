@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-custom ">
     <div class="container">
         <a class="navbar-brand" href="#">
-            <img src="img/logo.png" alt="Logo">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,7 @@
                     <a class="nav-link" href="#">ACCUEIL</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">HOTELS</a>
+                    <a class="nav-link" href="hotels">HOTELS</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">DESTINATION</a>
