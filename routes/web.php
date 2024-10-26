@@ -19,7 +19,7 @@ use App\Http\Controllers\confirmEmailController;
 
 Route::get('/', function () {
     return view('main');
-});
+})->name('main');
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login')->middleware('guest');
 Route::post('/login', [UserController::class, 'login'])->middleware('guest');
 
