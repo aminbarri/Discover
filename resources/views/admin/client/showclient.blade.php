@@ -35,7 +35,7 @@
                     <td>{{ $clients->id }}</td>
                     <td>{{ $clients->name }}</td>
                     <td>{{ $clients->email }}</td>
-                    <td>{{ $clients->email_verified_at ?? 'Not Verified' }}</td>
+                    <td>{{ $clients->email_verified_at ?'Verified' :'Not Verified'}}</td>
                     <td> {{ \Carbon\Carbon::parse($clients->created_at)->format('Y-m-d H:i')}}</td>
 
                 </tr>

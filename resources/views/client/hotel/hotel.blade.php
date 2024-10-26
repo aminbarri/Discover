@@ -10,6 +10,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+  <div>
     @include('layouts.navbar')
     @php
     
@@ -18,35 +19,42 @@
 
 
  
-<div class="hotel-container">
-    <!-- Hotel Title -->
-    <h1>{{ $hotels->nom }}</h1>
-    
-    <p><strong>Ville:</strong> {{ $hotels->ville }}</p>
-    
-    
-    <p><strong>Classe:</strong> {{ $hotels->classe }} stars</p>
-    
-    <!-- Price -->
-    <p><strong>Prix par nuit:</strong> {{ $hotels->prix }} MAD</p>
-    
-    <!-- Hotel Images -->
-    <div class="hotel-images">
-        @if($hotels->img1)
-            <img src="{{ asset($hotels->img1) }}" alt="Hotel Image 1">
-        @endif
-    
+
+<div class="container my-5">
+    <a href="{{ route('reserver_hotel', $hotels->id_hotel) }}" class=" a-link ">
+        <div class=" d-flex align-items-center con"> 
+            @if($hotels->img1)
+            <img src="{{ asset($hotels->img1) }}" alt="Hotel Image 1" class="hotel-img">
+            @endif
+            <div class="hotel-info">
+                <div class="basic-info">
+                    
+                <h5 class="hotel-name">{{ $hotels->nom }}</h5>
+                <div class="hotel-price">
+                MAD {{ $hotels->prix }}
+            </div>
+                 </div>
+                <div class="rating">
+                    <span>4.3</span>
+                    <span>(2.6K)</span>
+                    <span class="text-muted">· {{ $hotels->classe }}-star hotel</span>
+                </div>
+                <p>{{ $hotels->ville }}</p>
+                <div class="hotel-amenities">
+                    <span><i class="fas fa-parking"></i> Free parking</span>
+                    <span><i class="fas fa-wifi"></i> Free Wi-Fi</span>
+                </div>
+                
+            </div>
+            
+          
+        </div>
+        </a>
     </div>
-    
-    <!-- Reserve Button -->
-    <a href="{{ route('reserver_hotel', $hotels->id_hotel) }}" class="btn-reserve">Reserve Now</a>
- 
-   
-</div>
-@php
-}
-@endphp
-    </div>
+
+            @php
+            }
+        @endphp
         @include('layouts.footer')
     </div>
       

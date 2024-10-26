@@ -318,14 +318,18 @@ ul li:hover > ul {
     border-top-left-radius: 0px;
 }
 .encours{
-    background-color:darkgrey;
+    background-color:#73BBA3;
+    cursor: pointer;
 }
 .refuse{
-    background-color:red;
+    background-color:#ff0000;
+    cursor: pointer;
 }
 .accepte{
-    background-color:green;
+    background-color:#008000;
+    cursor: pointer;
 }
+
 .listyu>span{
     margin: 0px;
     padding: 10px 10px 10px 10px; 
@@ -404,4 +408,144 @@ ul li:hover > ul {
 
 .btn-reserve:hover {
     background-color: #218838;
+}
+
+
+
+.hotel-info {
+    flex: 3;
+    margin-left: 15px;
+}
+
+.hotel-info h5 {
+    margin: 0;
+}
+
+.hotel-info p {
+    margin: 5px 0;
+}
+
+.hotel-amenities {
+    font-size: 0.9rem;
+}
+
+.hotel-amenities span {
+    margin-right: 15px;
+}
+
+.hotel-price {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.rating {
+    color: #ffd700;
+}
+
+.hotel-img {
+    width: auto;
+    height: 154px;
+    border-radius: 8px;
+}
+.a-link {
+    text-decoration:none;
+    color: inherit;
+    padding: 10px 15px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.a-link:hover{
+    background-color: #4f4242;
+    color: #fff;
+    text-decoration:none;
+}
+.hotel-name{
+}
+.con{
+    
+    width: -webkit-fill-available;
+}
+.basic-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.post {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.post:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.post-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.post-meta i {
+    margin-right: 5px;
+}
+
+.post-content {
+    font-size: 1rem;
+    color: #333;
+}
+
+.post-img {
+    width:-webkit-fill-available;
+    height: 500px;
+    object-fit: cover; /* Ensures the image covers the container */
+    object-position: center; 
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+#reservation{
+    display: none;
+}
+.reserver{
+    text-decoration: none;
+    color: #000;
+    background-color: #007bff;  
+      text-align: center;
+    display: block;
+    width: 100%;
+    padding: 10px 5px;
+    border-radius: 5px;
+
+}
+.reserver:hover{
+    color: #000;
+    background-color: #517296;
+    text-decoration: none;
 }

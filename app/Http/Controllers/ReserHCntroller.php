@@ -15,9 +15,13 @@ class ReserHCntroller extends Controller
         $reseration =DB::table('reservation_hotel')->where('statu', 'En cours')
         ->leftJoin('users', 'reservation_hotel.id_client', '=', 'users.id')
         ->get();
-        $accepte =DB::table('reservation_hotel')->where('statu', 'Acceptée')->get();
-        $refuse =DB::table('reservation_hotel')->where('statu', 'Refusée')->get();
-        return view('admin.reservation.hotel.list',compact('reseration'));
+        $accepte =DB::table('reservation_hotel')->where('statu', 'Acceptée')
+        ->leftJoin('users', 'reservation_hotel.id_client', '=', 'users.id')
+        ->get();
+        $refuse =DB::table('reservation_hotel')->where('statu', 'Refusée')
+        ->leftJoin('users', 'reservation_hotel.id_client', '=', 'users.id')
+        ->get();
+        return view('admin.reservation.hotel.list',compact('reseration','accepte','refuse'));
     }
     
 

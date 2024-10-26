@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
         {
             
-            public function showLoginForm()
-        {
+        public function showLoginForm() {
             return view('auth.login');
         }
 
@@ -20,29 +19,39 @@ class UserController extends Controller
         public function dashboard(){
             return view('admin.dashboard');
         }
+
+
         public function showclient(){
             $client =DB::table('users')->where('type', 'user')->get();;
             return view('admin.client.showclient',compact('client'));
         }
+
+
         public function profile(){
             $profile =DB::table('users')->where('id',Auth::id())->first();
             return view('admin.admin.profile',compact('profile'));
         }
-        public function show()
-        {
+
+
+        public function show(){
              // Retrieve the logged-in user
              $user = Auth::user();
             return view('admin.dashboard', compact('user')); // Pass user data to the view
         }
-        public function create()
-        {
+
+
+        public function create(){
             return view('auth.signup');
         }
 
+
+
         private function  sendConfirmation($user){
-            Mail::to('barrimohamed01@gmail.com')->send(new ProfileMail($user));
+            Mail::to($user->email)->send(new ProfileMail($user));
 
         }
+
+
 
         public function  verifyemail(String $hash){
             $decodedHash = base64_decode($hash);
@@ -60,8 +69,9 @@ class UserController extends Controller
          
           return view('admin.emails.verify',compact('name','email'));
         }
-        public function store(Request $request)
-    {
+
+
+        public function store(Request $request){
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|email|max:255|unique:users',
@@ -81,8 +91,9 @@ class UserController extends Controller
        
         return redirect()->route('login')->with('success', 'Account created successfully.');
 }
-    public function login(Request $request)
-    {
+
+
+    public function login(Request $request){
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -104,8 +115,8 @@ class UserController extends Controller
             'email' => 'The provided credentials do not match our records.',
         ]);
     }
-    public function logout(Request $request)
-    {
+
+    public function logout(Request $request){
         Auth::logout();
         return redirect()->route('login');
     }

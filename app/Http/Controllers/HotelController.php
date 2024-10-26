@@ -15,6 +15,7 @@ class HotelController extends Controller
         $hotel = DB::table('hotels')->get();
                 return view ('client.hotel.hotel',compact('hotel'));
     }
+   
     public function showsingle($id_hotel){
         $hotel = hotel::where('id_hotel', $id_hotel)->first();
          return view('client.hotel.reshotel', compact('hotel'));
