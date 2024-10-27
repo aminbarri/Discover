@@ -1,5 +1,5 @@
 html, body {
-    height: 100%;
+    min-height: 100vh; 
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -27,6 +27,7 @@ html, body {
 }
 .navbar-custom .navbar-brand img {
     height: 40px;
+   
 }
 .navbar-custom .nav-link {
     color: white;
@@ -147,8 +148,7 @@ footer {
     margin-top: 20px;
     padding: 10px 0;
     width: 100%;
-    position: relative;
-    bottom: 0px;
+   
 }
 /*Login page*/
 
@@ -172,21 +172,51 @@ footer {
     padding: 0.5rem 1rem;
    /* Black border at the bottom */
 }
-
+.navbar-brand {
+    padding: 7px 10px;
+   
+    
+    
+}
 .custom-navbar .navbar-brand {
     display: flex;
     align-items: center;
 }
+.nav-list{
+    width: 20%;
+    min-height: 100vh; 
+   
+    background-color: #5ea76f;
 
+}
+.nav-list-d{  height: 55.9px;
+    width: 100%;
+    background-color:#4CAF50;
+}
 .custom-navbar .logo {
     width: 40px;
     height: auto;
     margin-right: 10px;
 }
-
+.bi-arrow-bar-right{
+    display: none;
+    font-size: 2em;
+}
+.bi-arrow-bar-left{
+    font-size: 2em;
+}
+.container-t{
+    align-items: stretch;
+}
+.content{
+    flex-grow: 1;
+}
+.nav-list, .content-elemen {
+    transition: width 0.9s ease; 
+}
 .custom-navbar .brand-name {
     font-weight: bold;
-    color: #FFDF00; /* Yellow color */
+    color: #FFDF00; 
     font-size: 18px;
 }
 
@@ -207,10 +237,17 @@ footer {
 .custom-list {
     list-style: none;
     padding: 0;
+    color: #000;
     margin: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 15px;
+}
+.custom-list>li>a{
+    color: #000;
+}.custom-list>li>a:hover{
+    text-decoration: none;
+    color: #303030;
 }
 .custom-list li {
     display: flex;
@@ -222,6 +259,7 @@ footer {
     margin-right: 8px;
 }
 .custom-list a {
+    color: #000;
     color: inherit; /* Keeps the color of the text the same */
     text-decoration: none; /* Removes underline */
 }
@@ -548,4 +586,13 @@ ul li:hover > ul {
     color: #000;
     background-color: #517296;
     text-decoration: none;
+}
+
+
+.content-elemen{
+    width: 80%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }

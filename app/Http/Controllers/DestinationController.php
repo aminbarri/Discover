@@ -17,9 +17,8 @@ class DestinationController extends Controller
         return view('admin.desti.list',compact('dest'));
     }
 
-    public function create($id_des){
-        return view('admin.desti.desti')
-        ->with('destin',DESTIN::where('id_des',$id_des)->first());;
+    public function create(){
+        return view('admin.desti.desti');
     }
     public function store(Request $request){
 
