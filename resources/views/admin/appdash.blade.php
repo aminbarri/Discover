@@ -17,26 +17,23 @@
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-<div class="d-flex flex-row container-t ">
+<div class=" container-t  ">
        
-    <div class="nav-list "> 
-        <div class="nav-list-d">
-            <span class='hide-text'>  <a class="navbar-brand" href="#">
-            <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo" width= '108px'>
-            
-        </a></span>
-        <i class="bi bi-arrow-bar-left"></i> <i class="bi bi-arrow-bar-right"></i>
-
-        </div>
-       
-        @include('admin.list')
-    </div>
-      
-     <div class=" content-elemen">
+        <div>
             @include('admin.navv')
         
+        </div>
+        
       
-            
+     <div class=" flex-row d-flex">
+        <div class="nav-list "> 
+        
+       
+            @include('admin.list')
+        </div>
+        
+      
+        <div class="content-elemen">
             <div class="content">
                 @yield('content')
             </div>
@@ -47,6 +44,8 @@
        
         
         @include('../layouts.footer')
+            </div>    
+            
 
       </div>
     </div>

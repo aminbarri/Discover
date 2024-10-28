@@ -173,7 +173,7 @@ footer {
    /* Black border at the bottom */
 }
 .navbar-brand {
-    padding: 7px 10px;
+   
    
     
     
@@ -184,19 +184,19 @@ footer {
 }
 .nav-list{
     width: 20%;
-    min-height: 100vh; 
    
     background-color: #5ea76f;
 
 }
-.nav-list-d{  height: 55.9px;
-    width: 100%;
-    background-color:#4CAF50;
+.ml-auto{
+    margin-left:0px ;
+}
+.nav-list-d{ 
+margin: auto  !important;
 }
 .custom-navbar .logo {
-    width: 40px;
-    height: auto;
-    margin-right: 10px;
+    
+
 }
 .bi-arrow-bar-right{
     display: none;
@@ -206,6 +206,8 @@ footer {
     font-size: 2em;
 }
 .container-t{
+    
+    min-height: 100vh;
     align-items: stretch;
 }
 .content{
@@ -229,7 +231,7 @@ footer {
 
 .custom-navbar .profile-picture {
     width: 40px;
-    height: 40px;
+    height: 40px;margin-top: 7px;
     border-radius: 50%;
     object-fit: cover;
    
@@ -591,7 +593,6 @@ ul li:hover > ul {
 
 .content-elemen{
     width: 80%;
-    min-height: 100vh;
     position: relative;
     display: flex;
     flex-direction: column;
