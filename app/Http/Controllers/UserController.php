@@ -65,7 +65,6 @@ class UserController extends Controller
             $user->fill([
                 'email_verified_at'=>now()
             ])->save();
-          //  return view('admin.emailverified',compact('name','email'));
          
           return view('admin.emails.verify',compact('name','email'));
         }
@@ -86,8 +85,7 @@ class UserController extends Controller
 
 
         $this->sendConfirmation($user);
-        // Send the email with the user instance
-        //Mail::to('barrimohamed01@gmail.com')->send(new ProfileMail($user));
+      
        
         return redirect()->route('login')->with('success', 'Account created successfully.');
 }

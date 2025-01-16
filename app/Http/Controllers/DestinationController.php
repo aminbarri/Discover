@@ -12,7 +12,7 @@ class DestinationController extends Controller
 
         $user = Auth::user();
         
-    // Retrieve hotels created by this user
+ 
       $dest = Destin::where('id_user', $user->id)->get();
         return view('admin.desti.list',compact('dest'));
     }
