@@ -15,15 +15,15 @@ class HotelController extends Controller
         $hotel = DB::table('hotels')->get();
                 return view ('client.hotel.hotel',compact('hotel'));
     }
-   
+
     public function showsingle($id_hotel){
         $hotel = hotel::where('id_hotel', $id_hotel)->first();
          return view('client.hotel.reshotel', compact('hotel'));
      }
     public function show(){
-       
+
         $user = Auth::user();
-        
+
         // Retrieve hotels created by this user
         $hotel = Hotel::where('id', $user->id)->get();
 
@@ -35,7 +35,7 @@ class HotelController extends Controller
     }
 
     public function store(Request $request)
-{
+    {
     // Validate the incoming request data
     $request->validate([
         'nom' => 'required|string|max:255',
@@ -67,7 +67,7 @@ class HotelController extends Controller
         $img1->move(public_path('img/hotels'), $img1Name);
         $hotel->img1 = 'img/hotels/' . $img1Name;
     }
-    
+
     else{
         $hotel->img1  =null;
     }
@@ -98,16 +98,16 @@ class HotelController extends Controller
 
     // Redirect or return success message
     return redirect()->to('/hotel')->with('success', 'Hotel created successfully.');
-}
+    }
 
-public function edit($id_hotel)
-{
-    return view('admin.hotel.edit')
-    ->with('hotels',HOTEL::where('id_hotel',$id_hotel)->first());
-}
-public function update(Request $request, $id_hotel)
-{ 
-    $request->validate([
+    public function edit($id_hotel)
+    {
+        return view('admin.hotel.edit')
+        ->with('hotels',HOTEL::where('id_hotel',$id_hotel)->first());
+    }
+    public function update(Request $request, $id_hotel)
+    {
+        $request->validate([
         'nom' => 'required|string|max:255',
         'ville' => 'required|string|max:255',
         'carte' => 'required|string|max:10000',
@@ -146,27 +146,27 @@ public function update(Request $request, $id_hotel)
             $updateData['img3'] = 'img/hotels/' . $img3Name;
         } else {
             $updateData['img3'] = null;
-}
+        }
 
-// Updating other fields
-$updateData['nom'] = $request->nom;
-$updateData['ville'] = $request->ville;
-$updateData['carte'] = $request->carte;
-$updateData['chambre'] = $request->chambre;
-$updateData['classe'] = $request->classe;
-$updateData['location'] = $request->location;
-$updateData['prix'] = $request->prix;
+        // Updating other fields
+        $updateData['nom'] = $request->nom;
+        $updateData['ville'] = $request->ville;
+        $updateData['carte'] = $request->carte;
+        $updateData['chambre'] = $request->chambre;
+        $updateData['classe'] = $request->classe;
+        $updateData['location'] = $request->location;
+        $updateData['prix'] = $request->prix;
 
-// Perform the update in one call
-HOTEL::where('id_hotel', $id_hotel)->update($updateData);
-return redirect()->to('/hotel')
-->with('message','the post has been edited');
- }
-public function destroy($id_hotel){
-  
-     Hotel::where('id_hotel' , $id_hotel)
-     ->delete();
+        // Perform the update in one call
+        HOTEL::where('id_hotel', $id_hotel)->update($updateData);
         return redirect()->to('/hotel')
-        ->with('message','the post has been Deleted');
-    }
+        ->with('message','the post has been edited');
+        }
+        public function destroy($id_hotel){
+
+            Hotel::where('id_hotel' , $id_hotel)
+            ->delete();
+                return redirect()->to('/hotel')
+                ->with('message','the post has been Deleted');
+            }
 }
