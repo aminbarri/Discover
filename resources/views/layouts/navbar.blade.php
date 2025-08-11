@@ -15,11 +15,11 @@
                     <a class="nav-link" href="{{ route('hotels_index') }}">HOTELS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">DESTINATION</a>
+                    <a class="nav-link" href="{{ route('dest') }}">DESTINATION</a>
                 </li>
-               
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#">RESTAURANT</a>
+                    <a class="nav-link" href="{{ route('restau_client') }}">RESTAURANT</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contact">CONTACT</a>

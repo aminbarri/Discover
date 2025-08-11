@@ -4,19 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\restau;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
 class RestaurantController extends Controller
 {
   public function show(){
     $user = Auth::user();
-        
+
     // Retrieve hotels created by this user
     $restau = RESTAU::where('user_id', $user->id)->get();
 
     return view('admin.restau.list',compact('restau'));
   }
 
+  public function client_show(){
+    $restau = DB::table('restau')->get();
+    return view('client.restaurant.restaurant',compact('restau'));
+  }
   public function create(){
     return view('admin.restau.restau');
   }
@@ -32,7 +37,7 @@ class RestaurantController extends Controller
             'img1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'img2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'img3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            
+
      ]);
 
      $restau = new Restau();
@@ -43,8 +48,8 @@ class RestaurantController extends Controller
      $restau->description = $request->description;
      $restau->location = $request->location;
      $restau->carte = $request->carte;
-    
-   
+
+
 
      if ($request->hasFile('img1')) {
         $img1 = $request->file('img1');
@@ -52,7 +57,7 @@ class RestaurantController extends Controller
         $img1->move(public_path('img/restaus'), $img1Name);
         $restau->img1 = 'img/restaus/' . $img1Name;
     }
-   
+
 
     if ($request->hasFile('img2')) {
         $img2 = $request->file('img2');
@@ -60,7 +65,7 @@ class RestaurantController extends Controller
         $img2->move(public_path('img/restaus'), $img2Name);
         $restau->img2 = 'img/restaus/' . $img2Name;
     }
-  
+
 
     if ($request->hasFile('img3')) {
         $img3 = $request->file('img3');
@@ -94,17 +99,17 @@ public function update(Request $request ,$id_rest){
             'img1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'img2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'img3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            
+
      ]);
      $updateData = [];
-     
+
      if ($request->hasFile('img1')) {
         $img1 = $request->file('img1');
         $img1Name = time() . '_1.' . $img1->getClientOriginalExtension();
         $img1->move(public_path('img/restaus'), $img1Name);
         $updateData['img1'] = 'img/restaus/' . $img1Name;
     }
-   
+
 
     if ($request->hasFile('img2')) {
         $img2 = $request->file('img2');
@@ -112,7 +117,7 @@ public function update(Request $request ,$id_rest){
         $img2->move(public_path('img/restaus'), $img2Name);
         $updateData['img2'] = 'img/restaus/' . $img2Name;
     }
-  
+
 
     if ($request->hasFile('img3')) {
         $img3 = $request->file('img3');
@@ -134,7 +139,7 @@ return redirect()->to('/restau')
 ->with('message','the post has been edited');
 }
   public function destroy($id_rest){
-  
+
     RESTAU::where('id_rest' , $id_rest)
     ->delete();
        return redirect()->to('/restau')
