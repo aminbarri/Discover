@@ -19,7 +19,7 @@ class PlatController extends Controller
         $plat = DB::table('platofrest')
         ->join('plat', 'platofrest.id_plat', '=', 'plat.id_plat')
         ->join('restau', 'platofrest.id_rest', '=', 'restau.id_rest')
-        ->select('plat.*', 'restau.nom as restaurant_name','restau.description as restaurant_description') 
+        ->select('plat.*', 'restau.nom as restaurant_name','restau.description as restaurant_description')
         ->where('restau.id_rest', '=', $id_rest)
         ->get();
         $restau= DB::table('restau') ->where('id_rest', '=', $id_rest)->first();
@@ -32,7 +32,7 @@ class PlatController extends Controller
 
     public function store(PlatRequest $request){
         $request->validated();
-        
+
      $plat = new plat();
      $plat-> id_plat	 = $request->id_plat;
      $plat->nom = $request->nom;
@@ -43,7 +43,7 @@ class PlatController extends Controller
         $img1->move(public_path('img/plats'), $img1Name);
         $plat->img1 = 'img/plats/' . $img1Name;
     }
-   
+
 
     if ($request->hasFile('img2')) {
         $img2 = $request->file('img2');
@@ -51,7 +51,7 @@ class PlatController extends Controller
         $img2->move(public_path('img/plats'), $img2Name);
         $plat->img2 = 'img/plats/' . $img2Name;
     }
-  
+
 
     if ($request->hasFile('img3')) {
         $img3 = $request->file('img3');
@@ -68,14 +68,21 @@ class PlatController extends Controller
 }
 
 public function edit($id_plat){
-   
-    return view ('admin.plat.edit') 
+
+    return view ('admin.plat.edit')
     ->with('plat',PLAT::where('id_plat', $id_plat)->first());
 }
 
 public function update(Request $request ,$id_plat){
 
-    $request->validated();
+    $request->validate([
+            'nom' => 'required|string|max:100',
+            'description' => 'required|string',
+            'img1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'img2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'img3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+     ]);
     $updateData = [];
     if ($request->hasFile('img1')) {
         $img1 = $request->file('img1');
@@ -83,7 +90,7 @@ public function update(Request $request ,$id_plat){
         $img1->move(public_path('img/plats'), $img1Name);
         $updateData['img1']= 'img/plats/' . $img1Name;
     }
-   
+
 
     if ($request->hasFile('img2')) {
         $img2 = $request->file('img2');
@@ -91,7 +98,7 @@ public function update(Request $request ,$id_plat){
         $img2->move(public_path('img/plats'), $img2Name);
         $updateData['img2'] = 'img/plats/' . $img2Name;
     }
-  
+
 
     if ($request->hasFile('img3')) {
         $img3 = $request->file('img3');
@@ -101,7 +108,7 @@ public function update(Request $request ,$id_plat){
     }
     $updateData['nom'] = $request->nom;
     $updateData['description'] = $request->description;
-    
+
     PLAT::where('id_plat', $id_plat)->update($updateData);
     return redirect()->to('/plat')
     ->with('message','the post has been edited');

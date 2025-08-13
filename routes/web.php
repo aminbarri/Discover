@@ -40,6 +40,7 @@ Route::put('/hotel/{id}', [HotelController::class, 'update'])->name('hotels_upda
 
 Route::get('/restau', [RestaurantController::class, 'show'])->name('restau')->middleware('auth');
 Route::get('/restau_client', [RestaurantController::class, 'client_show'])->name('restau_client');
+Route::get('/single_restaurant/{id}', [RestaurantController::class, 'show_single'])->name('show_single_rest');
 Route::get('/restau/create', [RestaurantController::class, 'create'])->name('restau_create')->middleware('auth');
 Route::post('/restau/store', [RestaurantController::class, 'store'])->name('restau_store')->middleware('auth');
 Route::delete('/restau/{id}', [RestaurantController::class, 'destroy'])->name('restau_destroy')->middleware('auth');

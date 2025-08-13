@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\restau;
 use Illuminate\Support\Facades\DB;
+use App\Models\platofrest;
 
 use Illuminate\Support\Facades\Auth;
 class RestaurantController extends Controller
@@ -19,9 +20,25 @@ class RestaurantController extends Controller
   }
 
   public function client_show(){
-    $restau = DB::table('restau')->get();
+    $restau = RESTAU::all();
     return view('client.restaurant.restaurant',compact('restau'));
   }
+ public function show_single($id_rest)
+{
+   $plats = DB::table('plat')
+    ->join('platofrest', 'plat.id_plat', '=', 'platofrest.id_plat')
+    ->select('plat.*')
+    ->where('platofrest.id_rest', '=', $id_rest)
+    ->get();
+
+    $restau = RESTAU::where('id_rest', $id_rest)->first();
+
+    return view('client.restaurant.singleRestaurant', [
+        'plats'  => $plats,
+        'restau' => $restau
+    ]);
+}
+
   public function create(){
     return view('admin.restau.restau');
   }

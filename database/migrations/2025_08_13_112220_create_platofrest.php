@@ -12,12 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('platofrest', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_plat'); // Reference to the hotel, consider changing to unsignedBigInteger if your hotel ID is a big integer
+            $table->unsignedBigInteger('id_plat');
             $table->unsignedBigInteger('id_rest');
 
+            // Add soft deletes column
+            $table->timestamp('deleted_at')->nullable();
+
+            // Set composite primary key
+            $table->primary(['id_plat', 'id_rest']);
+
+            // Foreign key constraints
             $table->foreign('id_plat')->references('id_plat')->on('plat')->onDelete('cascade');
             $table->foreign('id_rest')->references('id_rest')->on('restau')->onDelete('cascade');
-       
         });
     }
 
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('flights');
+        Schema::dropIfExists('platofrest'); // Fixed: was 'flights'
     }
 };
