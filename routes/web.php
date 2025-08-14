@@ -19,9 +19,9 @@ Route::get('/', function () {
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login')->middleware('guest');
 Route::post('/login', [UserController::class, 'login'])->middleware('guest');
 
-Route::get('/dashboard', [UserController::class, 'show'])->name('dashboard')->middleware(['admin','auth']);
-Route::get('/showclient', [UserController::class, 'showclient'])->name('showclient')->middleware(['admin','auth']);
-Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware(['admin','auth']);
+Route::get('/dashboard', [UserController::class, 'show'])->name('dashboard')->middleware(['admin', 'auth']);
+Route::get('/showclient', [UserController::class, 'showclient'])->name('showclient')->middleware(['admin', 'auth']);
+Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware(['admin', 'auth']);
 Route::get('/verify_email/{hash}', [UserController::class, 'verifyemail']);
 
 Route::get('/signup', [UserController::class, 'create'])->name('signup')->middleware('guest');

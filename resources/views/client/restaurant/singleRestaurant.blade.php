@@ -1,4 +1,4 @@
-{{-- resources/views/client/restaurant/singleRestaurant.blade.php --}}
+
 @extends('app')
 
 @section('main', 'Restaurant Details')
