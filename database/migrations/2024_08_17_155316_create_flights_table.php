@@ -19,17 +19,17 @@ return new class extends Migration
             $table->date('date_depart');
             $table->time('heure_depart');
             $table->integer('dure');
-            $table->string('img', 1000);
+            $table->string('img', 1000)->nullable();
             $table->string('carte', 1000);
             $table->decimal('prix', 65, 0);
             $table->date('date_res');
             $table->timestamp('date_creation')->useCurrent(); // Adjust if needed
             $table->unsignedBigInteger('id_user'); // Adjust the column type if `id_user` is a different type
-            
+
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade'); // Assuming you have a `users` table
-            
+
             $table->timestamps(); // This will create `created_at` and `updated_at` columns
-        
+
         });
     }
 

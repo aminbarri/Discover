@@ -34,12 +34,18 @@ class PlatController extends Controller
         return view('admin.plat.plat');
     }
 
-    public function store(PlatRequest $request)
+    public function store(Request $request)
     {
-        $request->validated();
+        $request->validate([
+        'nom' => 'required|string|max:255',
+        'description' => 'string',
+        'img1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'img2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'img3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
 
         $plat = new plat();
-        $plat->id_plat     = $request->id_plat;
+        $plat->id_plat= $request->id_plat;
         $plat->nom = $request->nom;
         $plat->description = $request->description;
         if ($request->hasFile('img1')) {
@@ -48,8 +54,6 @@ class PlatController extends Controller
             $img1->move(public_path('img/plats'), $img1Name);
             $plat->img1 = 'img/plats/' . $img1Name;
         }
-
-
         if ($request->hasFile('img2')) {
             $img2 = $request->file('img2');
             $img2Name = time() . '_2.' . $img2->getClientOriginalExtension();
@@ -68,7 +72,7 @@ class PlatController extends Controller
 
         $plat->save();
 
-        return redirect()->to('/plat')->with('success', 'Hotel created successfully.');
+        return redirect()->to('/plat')->with('success', 'Plat created successfully.');
     }
 
     public function edit($id_plat)
