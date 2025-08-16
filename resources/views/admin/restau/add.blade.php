@@ -3,7 +3,7 @@
 @section('main', 'List restarant')
 @section('content')
 
-<div class="container">
+<div class="container p-4">
     <div class="form-container">
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -14,10 +14,10 @@
             </ul>
         </div>
     @endif
-            <h3 class="text-center">Add plat to restau {{$id_rest}}</h3>
+            <h3 class="text-center">Add plat to restau {{$restau->nom}}</h3>
        @foreach ($palt as $palts)
-          
-           
+
+
            <table class="table">
             <tbody>
 
@@ -29,8 +29,8 @@
                          ->where('id_plat', $palts->id_plat)
                          ->whereNull('deleted_at') // Check if 'deleted_at' is null (not soft-deleted)
                          ->exists();
-                @endphp     
-                <td class="fixed-width"> 
+                @endphp
+                <td class="fixed-width">
                     @if ($exists)
                     <form action="{{route('addplt.destroy',['id_plat' => $palts->id_plat, 'id_rest' => $id_rest])}}" method="POST" style="display:inline-block;">
                         @csrf
@@ -39,22 +39,22 @@
                             <i class="fas fa-trash-alt"></i> Delete
                         </button>
                     </form>
-                            
+
                     @else
                     <a href="{{route('addplt.store',['id_plat' => $palts->id_plat, 'id_rest' => $id_rest])}}" class="btn-style">
                         <i class="fas fa-edit"></i> add
                            </a>
                     @endif
-                  
-                    
+
+
             </td>
 
-           
+
                </tr>
             </tbody>
            </table>
        @endforeach
-       
+
     </div>
 </div>
 

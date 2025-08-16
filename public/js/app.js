@@ -17,50 +17,50 @@ $(".reserver").click(function() {
 
 /*
 
-// for left bar 
+// for left bar
 
 */
- 
-$(document).ready(function() {
-    if (localStorage.getItem('navCollapsed') === 'true') {
-        collapseNav();
-    } else {
-        expandNav();
-    }
 
-    $('.bi-arrow-bar-left').click(function() {
-        collapseNav();
-        localStorage.setItem('navCollapsed', 'true');
-    });
+// $(document).ready(function() {
+//     if (localStorage.getItem('navCollapsed') === 'true') {
+//         collapseNav();
+//     } else {
+//         expandNav();
+//     }
 
-    $('.bi-arrow-bar-right').click(function() {
-        expandNav();
-        localStorage.setItem('navCollapsed', 'false');
-    });
+//     $('.bi-arrow-bar-left').click(function() {
+//         collapseNav();
+//         localStorage.setItem('navCollapsed', 'true');
+//     });
 
-    function collapseNav() {
-        $('.nav-list').css("width", "5%");
-        $('.content-elemen').css("width", "95%");
-        $('.bi-arrow-bar-left').hide();
-        $('.bi-arrow-bar-right').show();
-        $('.hide-text').hide();
-    }
+//     $('.bi-arrow-bar-right').click(function() {
+//         expandNav();
+//         localStorage.setItem('navCollapsed', 'false');
+//     });
 
-    function expandNav() {
-        $('.nav-list').css("width", "20%");
-        $('.content-elemen').css("width", "80%");
-        $('.bi-arrow-bar-left').show();
-        $('.bi-arrow-bar-right').hide();
-        setTimeout(function() {
-            $('.hide-text').show();
-        }, 500);
-    }
-});
+//     function collapseNav() {
+//         $('.nav-list').css("width", "5%");
+//         $('.content-elemen').css("width", "95%");
+//         $('.bi-arrow-bar-left').hide();
+//         $('.bi-arrow-bar-right').show();
+//         $('.hide-text').hide();
+//     }
 
-
+//     function expandNav() {
+//         $('.nav-list').css("width", "20%");
+//         $('.content-elemen').css("width", "80%");
+//         $('.bi-arrow-bar-left').show();
+//         $('.bi-arrow-bar-right').hide();
+//         setTimeout(function() {
+//             $('.hide-text').show();
+//         }, 500);
+//     }
+// });
 
 
-//for reservation page 
+
+
+//for reservation page
 
 $(".encours").click(function(){
     $("#accepter").hide();

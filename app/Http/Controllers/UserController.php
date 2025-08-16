@@ -10,12 +10,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
         {
-            
+
         public function showLoginForm() {
             return view('auth.login');
         }
 
-       
+
         public function dashboard(){
             return view('admin.dashboard');
         }
@@ -56,7 +56,7 @@ class UserController extends Controller
         public function  verifyemail(String $hash){
             $decodedHash = base64_decode($hash);
             $parts = explode('//', $decodedHash);
-            [$date, $id] = $parts; 
+            [$date, $id] = $parts;
             $user = User::findOrFail($id);
             $name= $user->name;
             $email= $user->email;
@@ -65,7 +65,7 @@ class UserController extends Controller
             $user->fill([
                 'email_verified_at'=>now()
             ])->save();
-         
+
           return view('admin.emails.verify',compact('name','email'));
         }
 
@@ -76,7 +76,7 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
         ]);
-       
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -85,8 +85,8 @@ class UserController extends Controller
 
 
         $this->sendConfirmation($user);
-      
-       
+
+
         return redirect()->route('login')->with('success', 'Account created successfully.');
 }
 
@@ -103,7 +103,7 @@ class UserController extends Controller
             // Authentication passed...
             $user = Auth::user();
         if ($user->type == User::ROLE_ADMIN) {
-            return redirect()->intended('/profile');
+            return redirect()->intended('/dashboard');
         } else {
             return redirect()->intended('/');
         }

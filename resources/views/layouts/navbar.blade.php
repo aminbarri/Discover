@@ -37,6 +37,15 @@
                         @csrf
                     </form>
                 </li>
+                @if (Auth::user()->type == 'admin')
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ route('dashboard') }}">
+                        DASHBOARD
+                    </a>
+
+                </li>
+                @endif
+
                @endguest
             </ul>
         </div>

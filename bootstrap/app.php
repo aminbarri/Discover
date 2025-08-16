@@ -12,6 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up'
     )
     ->withMiddleware(function (Middleware $middleware) {
+     $middleware->append(AdminMiddleware::class);
+    })
+    ->withMiddleware(function (Middleware $middleware) {
         // Use method to define global middleware
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
