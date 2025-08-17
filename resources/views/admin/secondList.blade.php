@@ -1,5 +1,5 @@
 <!-- resources/views/components/sidebar.blade.php -->
-<div class="d-flex flex-column flex-shrink-0 p-3 bg-dark text-white sidebar" style="width: 280px; min-height: 100vh;">
+<div class="d-flex flex-column flex-shrink-0 p-3  text-white sidebar" style="width: 280px; min-height: 100vh;">
     <a href="{{ route('dashboard') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <i class="bi bi-speedometer2 me-2"></i>
         <span class="fs-4">Admin Panel</span>
@@ -21,7 +21,7 @@
                 <span><i class="bi bi-people me-2"></i>Users</span>
                 <i class="bi bi-chevron-down"></i>
             </a>
-            <div class="collapse {{ request()->routeIs('showclient', 'profile', 'signup') ? 'show' : '' }}" id="usersCollapse">
+            <div class="collapse {{ request()->routeIs('showclient', 'profile') ? 'show' : '' }}" id="usersCollapse">
                 <ul class="nav flex-column ms-3">
                     <li class="nav-item">
                         <a href="{{ route('showclient') }}" class="nav-link text-white-50 {{ request()->routeIs('showclient') ? 'active' : '' }}">
@@ -31,11 +31,6 @@
                     <li class="nav-item">
                         <a href="{{ route('profile') }}" class="nav-link text-white-50 {{ request()->routeIs('profile') ? 'active' : '' }}">
                             <i class="bi bi-person me-2"></i>Profile
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('signup') }}" class="nav-link text-white-50 {{ request()->routeIs('signup') ? 'active' : '' }}">
-                            <i class="bi bi-person-plus me-2"></i>Add User
                         </a>
                     </li>
                 </ul>
@@ -48,7 +43,7 @@
                 <span><i class="bi bi-building me-2"></i>Hotels</span>
                 <i class="bi bi-chevron-down"></i>
             </a>
-            <div class="collapse {{ request()->routeIs('hotels_show', 'hotels_index', 'hotels_create', 'hotels_edit', 'reserver_hotel') ? 'show' : '' }}" id="hotelsCollapse">
+            <div class="collapse {{ request()->routeIs('hotels_show', 'hotels_index', 'hotels_create', 'hotels_edit') ? 'show' : '' }}" id="hotelsCollapse">
                 <ul class="nav flex-column ms-3">
                     <li class="nav-item">
                         <a href="{{ route('hotels_show') }}" class="nav-link text-white-50 {{ request()->routeIs('hotels_show') ? 'active' : '' }}">
@@ -215,8 +210,9 @@
 
 <!-- Custom CSS for sidebar -->
 <style>
-.sidebar {
 
+.sidebar {
+    background-color: #0f5132;
     z-index: 1000;
     overflow-y: auto;
     scrollbar-width: none;
@@ -232,7 +228,9 @@
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.2);
+    /* background-color: rgba(255, 255, 255, 0.2); */
+    background-color: #4CAF50;
+
     border-radius: 3px;
 }
 

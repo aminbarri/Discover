@@ -7,8 +7,24 @@
                  <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo" width= '108px'>
                 </a>
             </div>
-            <div class="">
-                <img src="{{ asset('img/profile.png') }}" alt="Profile Picture" class="profile-picture">
+            <div class="dropdown dropstart">
+                <i class="bi bi-person-circle m-2 fs-2 text-light cursor-pointer " id="dropdownUser12" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                <ul class="dropdown-menu  text-small shadow">
+                    <li><a class="dropdown-item" href="{{ route('profile') }}">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="dropdown-item">Sign out</button>
+                        </form>
+                    </li>
+                </ul>
+
             </div>
         </div>
     </nav>
+<style>
+    .cursor-pointer{
+        cursor: pointer;
+    }
+</style>

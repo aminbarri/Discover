@@ -9,28 +9,28 @@
         <div class="collapse navbar-collapse ps-3 ps-md-0" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('main') }}">ACCUEIL</a>
+                    <a class="nav-link fw-medium {{ request()->routeIs('main') ? 'active' : '' }}" href="{{ route('main') }}">ACCUEIL</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('hotels_index') }}">HOTELS</a>
+                    <a class="nav-link fw-medium" href="{{ route('hotels_index') }}">HOTELS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dest') }}">DESTINATION</a>
+                    <a class="nav-link fw-medium {{ request()->routeIs('main') ? 'dest' : '' }}" href="{{ route('dest') }}">DESTINATION</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('restau_client') }}">RESTAURANT</a>
+                    <a class="nav-link fw-medium {{ request()->routeIs('restau_client') ? 'active' : '' }}" href="{{ route('restau_client') }}">RESTAURANT</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contact">CONTACT</a>
+                    <a class="nav-link fw-medium {{ request()->routeIs('message_create') ? 'active' : '' }}" href="{{ route(name: 'message_create') }}">CONTACT</a>
                 </li>
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">SE CONNECTER</a>
+                        <a class="nav-link fw-medium" href="{{ route('login') }}">SE CONNECTER</a>
                     </li>
                 @else
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <a class="nav-link fw-medium" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         LOG OUT
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -39,7 +39,7 @@
                 </li>
                 @if (Auth::user()->type == 'admin')
                     <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard') }}">
+                    <a class="nav-link fw-medium" href="{{ route('dashboard') }}">
                         DASHBOARD
                     </a>
 
@@ -51,3 +51,5 @@
         </div>
     </div>
 </nav>
+
+
