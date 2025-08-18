@@ -100,4 +100,4 @@ Route::get('/addplat/store/{id_plat}/{id_rest}', [PlatRestauController::class, '
 Route::delete('/addplat/{id_plat}/{id_rest}', [PlatRestauController::class, 'destroy'])->name('addplt.destroy')->middleware('auth');
 
 
-Route::get('/confirmation', [confirmEmailController::class, 'index'])->name('confirmation_email');
+Route::get('/confirmation/{email}', [confirmEmailController::class, 'send_confirmation'])->name('confirmation_email');

@@ -31,7 +31,7 @@ class ProfileMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Profile Confirmation',
+            subject: 'Email Confirmation',
         );
     }
 
@@ -42,11 +42,11 @@ class ProfileMail extends Mailable
     {
         $date = $date = $this->user->created_at ? $this->user->created_at->format('Y-m-d H:i:s') : now()->format('Y-m-d H:i:s');
 
-        $id = $this->user->id; 
+        $id = $this->user->id;
         $href =url(''). '/verify_email/'.base64_encode($date.'//'.$id);
-            
+
         return new Content(
-            
+
             view: 'admin.emails.inscripp',
             with:[
                 'email' =>$this->user->email,
