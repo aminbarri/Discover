@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+
 
 class UserController extends Controller
         {
@@ -118,33 +120,37 @@ class UserController extends Controller
 
    public function update_img(Request $request, $id)
     {
+        try {
         $request->validate([
-            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'img' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
-
-
         if ($request->hasFile('img')) {
             $img = $request->file('img');
             $folderPath = public_path('img/profile/' . $id);
 
-            // if folder exists, clear old files
             if (File::exists($folderPath)) {
-                File::cleanDirectory($folderPath); // removes all files inside but keeps the folder
+                File::cleanDirectory($folderPath);
             } else {
                 mkdir($folderPath, 0755, true);
             }
 
-            $imgName = time() . '_1.' . $img->getClientOriginalExtension();
+            $imgName = time() . 'img_profile_1.' . $img->getClientOriginalExtension();
             $img->move($folderPath, $imgName);
 
             $img_profile = 'img/profile/' . $id . '/' . $imgName;
 
-            // save to DB
-            User::where('id', $id)->update(['img' => $img_profile]);
+            $updated = User::where('id', $id)->update(['img' => $img_profile]);
         }
 
-
-        return redirect()->to('/profile')->with('success', 'Image updated successfully');
+        if ($updated) {
+            return redirect()->to('/profile')->with('success', 'Image updated successfully');
+        } else {
+            return redirect()->back()->with('error', 'No changes were made.');
+        }
+        }catch (\Exception $e) {
+            Log::error('Image update failed: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong, please try again.'. $e->getMessage());
+        }
     }
 
     public function logout(Request $request){
