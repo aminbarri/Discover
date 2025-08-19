@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
+
 class UserController extends Controller
         {
 
@@ -112,6 +114,37 @@ class UserController extends Controller
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
+    }
+
+   public function update_img(Request $request, $id)
+    {
+        $request->validate([
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $folderPath = public_path('img/profile/' . $id);
+
+            // if folder exists, clear old files
+            if (File::exists($folderPath)) {
+                File::cleanDirectory($folderPath); // removes all files inside but keeps the folder
+            } else {
+                mkdir($folderPath, 0755, true);
+            }
+
+            $imgName = time() . '_1.' . $img->getClientOriginalExtension();
+            $img->move($folderPath, $imgName);
+
+            $img_profile = 'img/profile/' . $id . '/' . $imgName;
+
+            // save to DB
+            User::where('id', $id)->update(['img' => $img_profile]);
+        }
+
+
+        return redirect()->to('/profile')->with('success', 'Image updated successfully');
     }
 
     public function logout(Request $request){

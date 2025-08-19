@@ -23,7 +23,8 @@ Route::post('/login', [UserController::class, 'login'])->middleware('guest');
 Route::get('/dashboard', [UserController::class, 'show'])->name('dashboard')->middleware([ 'auth',AdminMiddleware::class]);
 Route::get('/showclient', [UserController::class, 'showclient'])->name('showclient')->middleware(['auth']);
 Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware([ 'auth']);
-Route::get('/verify_email/{hash}', [UserController::class, 'verifyemail']);
+Route::get('/verify_email/{hash}', [UserController::class, 'verifyemail'])->middleware([ 'auth',AdminMiddleware::class]);
+Route::post('/update_profile/{id}',[UserController::class,'update_img'])->name('update_img')->middleware([ 'auth']);
 
 Route::get('/signup', [UserController::class, 'create'])->name('signup')->middleware('guest');
 Route::post('/users', [UserController::class, 'store'])->name('users.store')->middleware('guest');
