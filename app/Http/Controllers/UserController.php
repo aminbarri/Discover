@@ -19,44 +19,31 @@ class UserController extends Controller
             return view('auth.login');
         }
 
-
         public function dashboard(){
             return view('admin.dashboard');
         }
-
 
         public function showclient(){
             $client =DB::table('users')->where('type', 'user')->get();;
             return view('admin.client.showclient',compact('client'));
         }
 
-
         public function profile(){
             $profile =DB::table('users')->where('id',Auth::id())->first();
             return view('admin.admin.profile',compact('profile'));
         }
-
-
         public function show(){
              // Retrieve the logged-in user
              $user = Auth::user();
             return view('admin.dashboard', compact('user')); // Pass user data to the view
         }
-
-
         public function create(){
             return view('auth.signup');
         }
-
-
-
         private function  sendConfirmation($user){
             Mail::to($user->email)->send(new ProfileMail($user));
 
         }
-
-
-
         public function  verifyemail(String $hash){
             $decodedHash = base64_decode($hash);
             $parts = explode('//', $decodedHash);
@@ -64,16 +51,12 @@ class UserController extends Controller
             $user = User::findOrFail($id);
             $name= $user->name;
             $email= $user->email;
-
-
             $user->fill([
                 'email_verified_at'=>now()
             ])->save();
 
           return view('admin.emails.verify',compact('name','email'));
         }
-
-
         public function store(Request $request){
         $request->validate([
             'name' => 'required|string',
@@ -86,15 +69,9 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
-
-
         $this->sendConfirmation($user);
-
-
         return redirect()->route('login')->with('success', 'Account created successfully.');
-}
-
-
+    }
     public function login(Request $request){
         $request->validate([
             'email' => 'required|email',
@@ -117,7 +94,6 @@ class UserController extends Controller
             'email' => 'The provided credentials do not match our records.',
         ]);
     }
-
    public function update_img(Request $request, $id)
     {
         try {
@@ -152,7 +128,6 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Something went wrong, please try again.'. $e->getMessage());
         }
     }
-
     public function logout(Request $request){
         Auth::logout();
         return redirect()->route('login');

@@ -188,11 +188,8 @@
     </ul>
 
     <hr>
-
-    <!-- User Profile & Logout -->
     <div class="dropdown">
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown">
-
             @if ($profile->img)
              <img class=" rounded-circle me-2" style="width: 25px; height: 25px;" src="{{asset(auth()->user()->img)}}" alt="" id="dropdownUser12" data-bs-toggle="dropdown" aria-expanded="false">
             @else
