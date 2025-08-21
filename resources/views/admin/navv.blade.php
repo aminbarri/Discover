@@ -6,7 +6,7 @@
                 </a>
             </div>
             <div class="dropdown dropstart">
-                @if ($profile->img)
+                @if (auth()->user()->img)
                  <img class=" rounded-circle " style="width: 50px; height: 50px;" src="{{asset(auth()->user()->img)}}" alt="" id="dropdownUser12" data-bs-toggle="dropdown" aria-expanded="false">
                 @else
                 <i class="bi bi-person-circle m-2 fs-2 text-light cursor-pointer " id="dropdownUser12" data-bs-toggle="dropdown" aria-expanded="false"></i>

@@ -13,6 +13,8 @@ use App\Http\Controllers\reservationVController;
 use App\Http\Controllers\PlatRestauController;
 use App\Http\Controllers\confirmEmailController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\staticController;
+
 
 Route::get('/', function () {
     return view('main');
@@ -20,7 +22,7 @@ Route::get('/', function () {
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('login')->middleware('guest');
 Route::post('/login', [UserController::class, 'login'])->middleware('guest');
 
-Route::get('/dashboard', [UserController::class, 'show'])->name('dashboard')->middleware([ 'auth',AdminMiddleware::class]);
+Route::get('/dashboard', [staticController::class, 'showGeneralStatic'])->name('dashboard')->middleware([ 'auth',AdminMiddleware::class]);
 Route::get('/showclient', [UserController::class, 'showclient'])->name('showclient')->middleware(['auth']);
 Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware([ 'auth']);
 Route::get('/verify_email/{hash}', [UserController::class, 'verifyemail'])->middleware([ 'auth',AdminMiddleware::class]);
