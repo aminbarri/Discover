@@ -16,8 +16,6 @@ class staticController extends Controller
             'total_client'=>$total_client,
             'total_hotels'=>$total_hotels,
             'total_restarant'=>$total_restarant,
-
-
         ]);
     }
 }

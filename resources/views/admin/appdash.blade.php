@@ -18,7 +18,7 @@
 </head>
 <body>
 
-    <div class="admin-layout d-flex">
+    <div class="admin-layout d-flex position-relative">
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="nav-list">

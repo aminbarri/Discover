@@ -74,7 +74,7 @@ Route::post('/contact/store', [MessageController::class, 'store'])->name('messag
 Route::get('/message', [MessageController::class, 'show'])->name('message')->middleware('auth');
 Route::get('/message/{id}', [MessageController::class, 'index'])->name('message_show')->middleware('auth');
 Route::delete('/message/{id}', [MessageController::class, 'destroy'])->name('messagess.destroy')->middleware('auth');
-
+Route::post('/reply/{email}/{id_message_reply}/{sujet}',[MessageController::class, 'reply'])->name('reply_msg')->middleware([ 'auth',AdminMiddleware::class]);
 
 
 Route::get('/plat/create', [platController::class, 'create'])->name('plat_create')->middleware('auth');

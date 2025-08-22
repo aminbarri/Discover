@@ -17,7 +17,6 @@ html, body {
 }
 .main-content{
     width: 80%;
-
 }
 .min-vh-100 {
     min-height: 100vh !important;
@@ -42,6 +41,11 @@ html, body {
     color: #d4d4d4;
 }
 
+.sidebar{
+/* position: fixed; */
+top: 0px;
+left: 0px;
+}
 /* center bar */
 .center_bar {
     display: flex;

@@ -61,7 +61,7 @@
                 <input type="file" class="form-control" id="img3" name="img3">
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Submit</button>
+            <button type="submit" class="btn btn-primary w-100">Add</button>
         </form>
     </div>
 </div>

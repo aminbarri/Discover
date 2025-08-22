@@ -4,6 +4,20 @@
 @section('content')
 
 <div class="container mt-5">
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <a href="{{ route('message') }}" class=" mt-3"><strong><i class="bi bi-arrow-left-circle"></i> Back</strong></a>
 
     <h2>message Details</h2>
@@ -22,12 +36,12 @@
             Sent on {{ $messages->created_at->format('Y-m-d H:i') }}
         </div>
     </div>
-    
-   
+
+
  <!-- Reply Button -->
-    <a href="" class="btn btn-success mt-3">
+    <button class="btn btn-success mt-3 " data-bs-toggle="collapse" data-bs-target="#replyForm">
         <i class="bi bi-reply-fill"></i> Reply
-    </a>
+    </button>
 
     <!-- Delete Button -->
     <form action="{{ route('messagess.destroy', $messages->id_mess) }}" method="POST" class="d-inline">
@@ -37,6 +51,16 @@
             <i class="bi bi-trash-fill"></i> Delete
         </button>
     </form>
+    <div class="collapse mt-2" id="replyForm">
+    <form action="{{route('reply_msg',['sujet'=> $messages->sujet ,'email' =>  $messages->email, 'id_message_reply' => $messages->id_mess])}}" method="POST">
+        @csrf
+        <div class="form-floating mt-2">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="content"></textarea>
+        <label for="floatingTextarea2">Reply</label>
+        </div>
+        <button type="submit" class="btn btn-success mt-2">Success</button>
+    </form>
+    </div>
 </div>
 
 
