@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
         {
@@ -127,6 +127,62 @@ class UserController extends Controller
             Log::error('Image update failed: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong, please try again.'. $e->getMessage());
         }
+    }
+
+    public function update($id){
+       $user= User::where('id',$id)->first();
+        return view('admin.client.updateClient',['user'=>$user]);
+    }
+    public function edit(Request $request,$id){
+        $request->validate([
+            'name' => 'string|max:255',
+            'email' => 'string|email|max:255',
+            'password' => 'nullable|string|min:8|confirmed',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+        $updateData = [
+        'name' => $request->name,
+        'email' => $request->email,
+        ];
+
+        if ($request->filled('password')) {
+            $updateData['password'] = Hash::make($request->password);
+        }
+
+
+        if ($request->hasFile('img')) {
+            $img = $request->file('img');
+            $folderPath = public_path('img/profile/' . $id);
+
+            if (File::exists($folderPath)) {
+                File::cleanDirectory($folderPath);
+            } else {
+                mkdir($folderPath, 0755, true);
+            }
+
+            $imgName = time() . 'img_profile_1.' . $img->getClientOriginalExtension();
+            $img->move($folderPath, $imgName);
+
+            $img_profile = 'img/profile/' . $id . '/' . $imgName;
+
+            $updateData['img']= $img_profile;
+        }
+        if($request->email){
+            $user = User::where('id',$id)->first();
+            $this->sendConfirmation($user);
+        }
+        User::where('id',$id)->update($updateData);
+        return redirect()->to('/showclient')->with('success', ' updated successfully');
+    }
+    public function destroy($id){
+        $user = User::find($id);
+
+        if ($user) {
+            $user->delete();
+            return redirect()->back()->with('success', 'User deleted successfully.');
+        }
+
+        return redirect()->back()->with('error', 'User not found.');
     }
     public function logout(Request $request){
         Auth::logout();

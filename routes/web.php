@@ -27,6 +27,9 @@ Route::get('/showclient', [UserController::class, 'showclient'])->name('showclie
 Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware([ 'auth']);
 Route::get('/verify_email/{hash}', [UserController::class, 'verifyemail'])->middleware([ 'auth',AdminMiddleware::class]);
 Route::post('/update_profile/{id}',[UserController::class,'update_img'])->name('update_img')->middleware([ 'auth']);
+Route::delete('/delete/{id}',[UserController::class,'destroy'])->name('delete_client')->middleware([ 'auth',AdminMiddleware::class]);
+Route::get('/update/{id}',[UserController::class,'update'])->name('update_account')->middleware([ 'auth',AdminMiddleware::class]);
+Route::put('/edit/{id}',[UserController::class,'edit'])->name('edit_account')->middleware([ 'auth',AdminMiddleware::class]);
 
 Route::get('/signup', [UserController::class, 'create'])->name('signup')->middleware('guest');
 Route::post('/users', [UserController::class, 'store'])->name('users.store')->middleware('guest');

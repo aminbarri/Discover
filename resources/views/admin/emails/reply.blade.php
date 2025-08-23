@@ -1,6 +1,4 @@
-
-
-    <div class="container">
-        <img src="img\logo.png" alt="">
+<div class="container">
+    <img src="img\logo.png" alt="">
     <div>{{$content}}</div>
-    </div>
+</div>

@@ -36,6 +36,7 @@
                 @if (!$profile->email_verified_at)
                 <p class="mt-4"><a href="{{route('confirmation_email',['email' => $profile->email])}}" class="p-3 rounded-3 bg-success text-light text-decoration-none ">Verify Email</a></p>
                 @endif
+                <a class="text-decoration-none bg-success text-light p-2 rounded-2" href="{{route('update_account',$profile->id)}}">Update Profile</a>
             </div>
             <div class="w-50">
                 @if ($profile->img)
