@@ -4,30 +4,34 @@
 @section('content')
 
 <div class="container">
-    <div class="form-container">
-            <h2>Create Plat</h2>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+     @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
+    <div class="form-container card shadow-sm p-4">
+    <h2>Create Plat</h2>
     <form action="{{ route('plat_store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
     <div class="form-group">
         <label for="nom">Nom</label>
         <input type="text" class="form-control" id="nom" name="nom" value="{{ old('nom') }}" >
-     
+
     </div>
 
     <div class="form-group">
         <label for="description">Description</label>
         <textarea class="form-control " id="description" name="description" rows="3" >{{ old('description') }}</textarea>
-       
+
     </div>
 
     <div class="form-group">

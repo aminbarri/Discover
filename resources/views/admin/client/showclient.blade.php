@@ -1,6 +1,6 @@
 @extends('admin.appdash')
 
-@section('main', 'client list')
+@section('main', 'Client List')
 @section('content')
 <div class="container mt-5">
     @if(session('success'))

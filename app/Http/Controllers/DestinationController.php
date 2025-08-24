@@ -126,7 +126,7 @@ class DestinationController extends Controller
 
         DESTIN::where('id_des', $id_des)->update($updateData);
         return redirect()->to('/destination')
-        ->with('message','the post has been edited');
+        ->with('success','the post has been edited');
 
     }
 
@@ -135,6 +135,6 @@ class DestinationController extends Controller
         DESTIN::where('id_des' , $id_des)
         ->delete();
            return redirect()->to('/destination')
-           ->with('message','the post has been Deleted');
+           ->with('success','the post has been Deleted');
        }
 }

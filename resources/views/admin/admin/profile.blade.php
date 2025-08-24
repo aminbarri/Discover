@@ -33,10 +33,13 @@
                 <p><strong>Email:</strong> {{ $profile->email }}</p>
                 <p><strong>Email Verified At:</strong> {{ $profile->email_verified_at ?? 'Not Verified' }}</p>
                 <p><strong>Created At:</strong> {{ \Carbon\Carbon::parse($profile->created_at)->format('Y-m-d H:i') }}</p>
+                <div class="d-flex flex-row ">
                 @if (!$profile->email_verified_at)
-                <p class="mt-4"><a href="{{route('confirmation_email',['email' => $profile->email])}}" class="p-3 rounded-3 bg-success text-light text-decoration-none ">Verify Email</a></p>
+                <a href="{{route('confirmation_email',['email' => $profile->email])}}" class="me-5 p-3 rounded-3 bg-success text-light text-decoration-none ">Verify Email</a>
                 @endif
-                <a class="text-decoration-none bg-success text-light p-2 rounded-2" href="{{route('update_account',$profile->id)}}">Update Profile</a>
+                <a class="p-3 rounded-3 bg-success text-light text-decoration-none" href="{{route('update_account',$profile->id)}}">Update Profile</a>
+
+                </div>
             </div>
             <div class="w-50">
                 @if ($profile->img)

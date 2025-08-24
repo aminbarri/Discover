@@ -1,6 +1,6 @@
 @extends('admin.appdash')
 
-@section('main', 'Edit  holet')
+@section('main', 'Edit Hotel')
 @section('content')
 
 
@@ -58,7 +58,7 @@
                 <label for="img3">Image 3</label>
                 <input type="file" class="form-control" id="img3" name="img3">
             </div>
-            
+
 
             <button type="submit" class="btn btn-primary w-100">Update</button>
         </form>

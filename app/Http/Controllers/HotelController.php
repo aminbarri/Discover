@@ -160,13 +160,13 @@ class HotelController extends Controller
         // Perform the update in one call
         HOTEL::where('id_hotel', $id_hotel)->update($updateData);
         return redirect()->to('/hotel')
-        ->with('message','the post has been edited');
+        ->with('success','the Hotel has been edited');
         }
         public function destroy($id_hotel){
 
             Hotel::where('id_hotel' , $id_hotel)
             ->delete();
                 return redirect()->to('/hotel')
-                ->with('message','the post has been Deleted');
-            }
+                ->with('success','the post has been Deleted');
+        }
 }

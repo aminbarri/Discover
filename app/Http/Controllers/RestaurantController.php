@@ -159,7 +159,7 @@ class RestaurantController extends Controller
 
         RESTAU::where('id_rest', $id_rest)->update($updateData);
         return redirect()->to('/restau')
-            ->with('message', 'the post has been edited');
+            ->with('success', 'the post has been edited');
     }
     public function destroy($id_rest)
     {
@@ -167,6 +167,6 @@ class RestaurantController extends Controller
         RESTAU::where('id_rest', $id_rest)
             ->delete();
         return redirect()->to('/restau')
-            ->with('message', 'the post has been Deleted');
+            ->with('success', 'the post has been Deleted');
     }
 }

@@ -42,6 +42,6 @@ class PlatRestauController extends Controller
         ->where('id_rest', $id_rest)
         ->delete();
            return redirect()->back()
-           ->with('message','the Reservation has been Deleted');
+           ->with('success','the Reservation has been Deleted');
     }
 }

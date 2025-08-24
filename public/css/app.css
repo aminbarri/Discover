@@ -5,7 +5,6 @@ html, body {
     flex-direction: column;
 }
 .content-wrapper{
-    width: 100%;
     flex: 1;
 }
 .d-flex {
@@ -16,7 +15,9 @@ html, body {
     flex-direction: column !important;
 }
 .main-content{
-    width: 80%;
+    width: 100%;
+    padding-left: 20%;
+    min-height: 100vh;
 }
 .min-vh-100 {
     min-height: 100vh !important;
@@ -42,7 +43,7 @@ html, body {
 }
 
 .sidebar{
-/* position: fixed; */
+position: fixed;
 top: 0px;
 left: 0px;
 }

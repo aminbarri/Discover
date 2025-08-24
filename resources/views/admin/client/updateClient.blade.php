@@ -3,7 +3,7 @@
 
 @extends('admin.appdash')
 
-@section('main', 'Update account')
+@section('main', 'Update Account')
 @section('content')
 
 <div class="container">

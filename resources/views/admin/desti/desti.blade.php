@@ -2,13 +2,12 @@
 
 @section('main', 'Add  Destination')
 @section('content')
- 
+
 <div class="container mt-5">
+    <div class="card shadow-sm p-4">
     <h2>Create Destination</h2>
     <form action="{{ route('dest_store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        
-      
         <!-- Nom -->
         <div class="form-group">
             <label for="nom">Nom</label>
@@ -52,16 +51,10 @@
             <label for="img3">Image 3</label>
             <input type="file" class="form-control-file" id="img3" name="img3">
         </div>
-
-    
-
-
-        <!-- Created At and Updated At (Hidden Fields) -->
         <input type="hidden" name="created_at" value="{{ now() }}">
         <input type="hidden" name="updated_at" value="{{ now() }}">
-
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary w-100">Submit</button>
+        <button type="submit" class="btn btn-primary w-100">Add</button>
     </form>
+    </div>
 </div>
 @endsection

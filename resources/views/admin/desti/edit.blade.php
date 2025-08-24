@@ -8,7 +8,7 @@
     <form action="{{ route('dest_update',$destin->id_des) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-      
+
         <!-- Nom -->
         <div class="form-group">
             <label for="nom">Nom</label>
@@ -52,11 +52,6 @@
             <label for="img3">Image 3</label>
             <input type="file" class="form-control-file" id="img3" name="img3">
         </div>
-
-    
-
-
-     
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary">Update</button>
     </form>

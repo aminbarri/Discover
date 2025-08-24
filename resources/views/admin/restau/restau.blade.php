@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="container">
-    <div class="form-container">
+    <div class="form-container card shadow-sm p-4">
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>

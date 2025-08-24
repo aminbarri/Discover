@@ -119,7 +119,7 @@ class PlatController extends Controller
 
         PLAT::where('id_plat', $id_plat)->update($updateData);
         return redirect()->to('/plat')
-            ->with('message', 'the post has been edited');
+            ->with('success', 'the post has been edited');
     }
 
     public function destroy($id_plat)
@@ -127,6 +127,6 @@ class PlatController extends Controller
         PLAT::where('id_plat', $id_plat)
             ->delete();
         return redirect()->to('/plat')
-            ->with('message', 'the post has been Deleted');
+            ->with('success', 'the post has been Deleted');
     }
 }

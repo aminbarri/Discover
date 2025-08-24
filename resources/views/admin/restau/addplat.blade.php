@@ -35,12 +35,12 @@
                 <tr>
                     <td>{{$plats->id_plat}}</td>
                     <td>{{$plats->nom}}</td>
-                    
 
 
-                  
-                 
-                   
+
+
+
+
                 </tr>
                 @php
                }
@@ -48,8 +48,8 @@
              </tbody>
          </table>
             </div>
-            
-            
+
+
      </div>
 </div>
 

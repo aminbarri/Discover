@@ -3,7 +3,7 @@
 
 @extends('admin.appdash')
 
-@section('main', 'Add  holet')
+@section('main', 'Add  Holet')
 @section('content')
 
 <div class="container">
