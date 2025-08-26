@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 class ReserHCntroller extends Controller
 {
-    
+
     public function show(){
 
         $reseration =DB::table('reservation_hotel')->where('statu', 'En cours')
@@ -23,7 +23,7 @@ class ReserHCntroller extends Controller
         ->get();
         return view('admin.reservation.hotel.list',compact('reseration','accepte','refuse'));
     }
-    
+
 
     public function store(Request $request){
 
@@ -42,6 +42,7 @@ class ReserHCntroller extends Controller
         $resrhotel->date_debut = $request->date_debut;
         $resrhotel->date_fin = $request->date_fin;
         $resrhotel->id_hotel  = $request->id_hotel;
+        $resrhotel->date_reservartion= now();
         $resrhotel->id_client  = Auth::id();
 
         $resrhotel->save();
@@ -54,7 +55,7 @@ class ReserHCntroller extends Controller
     }
 
     public function edit($id_resh ){
-       
+
         return view('admin.reservation.hotel.edit')
         ->with('reservation',resrhotel::where('id_resh',$id_resh)->first());
 
@@ -88,7 +89,7 @@ class ReserHCntroller extends Controller
 
     }
     public function destroy($id_resh){
-  
+
         resrhotel::where('id_resh' , $id_resh)
         ->delete();
            return redirect()->to('/Resirvation/list')

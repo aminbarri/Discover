@@ -581,9 +581,9 @@ ul li:hover > ul {
     text-decoration: none;
     color: #000;
     background-color: #007bff;
-      text-align: center;
+    text-align: center;
     display: block;
-    width: 100%;
+    width: 60%;
     padding: 10px 5px;
     border-radius: 5px;
 

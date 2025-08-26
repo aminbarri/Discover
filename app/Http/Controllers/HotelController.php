@@ -126,8 +126,6 @@ class HotelController extends Controller
             $img1Name = time() . '_1.' . $img1->getClientOriginalExtension();
             $img1->move(public_path('img/hotels'), $img1Name);
             $updateData['img1'] = 'img/hotels/' . $img1Name;
-        } else {
-            $updateData['img1'] = null;
         }
 
         if ($request->hasFile('img2')) {
@@ -135,8 +133,6 @@ class HotelController extends Controller
             $img2Name = time() . '_2.' . $img2->getClientOriginalExtension();
             $img2->move(public_path('img/hotels'), $img2Name);
             $updateData['img2'] = 'img/hotels/' . $img2Name;
-        } else {
-            $updateData['img2'] = null;
         }
 
         if ($request->hasFile('img3')) {
@@ -144,10 +140,7 @@ class HotelController extends Controller
             $img3Name = time() . '_3.' . $img3->getClientOriginalExtension();
             $img3->move(public_path('img/hotels'), $img3Name);
             $updateData['img3'] = 'img/hotels/' . $img3Name;
-        } else {
-            $updateData['img3'] = null;
         }
-
         // Updating other fields
         $updateData['nom'] = $request->nom;
         $updateData['ville'] = $request->ville;
