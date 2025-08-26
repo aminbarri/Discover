@@ -37,7 +37,7 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout')->middl
 
 Route::get('/hotel', [HotelController::class, 'show'])->name('hotels_show')->middleware('auth');
 Route::get('/hotels', [HotelController::class, 'index'])->name('hotels_index');
-Route::get('/reservationh/{id_hotel}', [HotelController::class, 'showsingle'])->name('reserver_hotel')->middleware('auth');
+Route::get('/reservationh/{id_hotel}', [HotelController::class, 'showsingle'])->name('reserver_hotel');
 Route::get('/hotel/create', [HotelController::class, 'create'])->name('hotels_create')->middleware('auth');
 Route::post('/hotel/store', [HotelController::class, 'store'])->name('hotels_store')->middleware('auth');
 Route::delete('/hotel/{id}', [HotelController::class, 'destroy'])->name('hotels_destroy')->middleware('auth');

@@ -45,7 +45,6 @@
                 <label for="prix">Price</label>
                 <input type="number" class="form-control" id="prix" name="prix" placeholder="Enter price">
             </div>
-
             <div class="form-group mb-3">
                 <label for="img1">Image 1</label>
                 <input type="file" class="form-control" id="img1" name="img1">
@@ -60,7 +59,54 @@
                 <label for="img3">Image 3</label>
                 <input type="file" class="form-control" id="img3" name="img3">
             </div>
-
+            <div class="form-group mb-3">
+             <label for="">Living room</label>
+             <select name="living_room" class="form-select " aria-label="Large select example">
+                <option value="0" selected>Does the hotel have a living room?</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+             </select>
+            </div>
+            <div class="form-group mb-3">
+             <label for="">kitchen</label>
+             <select name="kitchen" class="form-select " aria-label="Large select example">
+                <option value="0" selected>Does the hotel have a kitchen?</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+             </select>
+            </div>
+            <div class="form-group mb-3">
+             <label for="">Parking</label>
+             <select name="free_parking" class="form-select " aria-label="Large select example">
+                <option value="0" selected>Does the hotel offer free parking?</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+             </select>
+            </div>
+            <div class="form-group mb-3">
+             <label for="">Swimming Pool</label>
+             <select name="swimming_pool" class="form-select " aria-label="Large select example">
+                <option value="0" selected>Does the hotel have a swimming pool?</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+             </select>
+            </div>
+            <div class="form-group mb-3">
+             <label for="">Refrigerator</label>
+             <select name="refrigerator" class="form-select " aria-label="Large select example">
+                <option value="0" selected>Does the hotel have a refrigerator?</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+             </select>
+            </div>
+            <div class="form-group mb-3">
+             <label for="">Pets</label>
+             <select name="pets_allowed" class="form-select " aria-label="Large select example">
+                <option value="0" selected>Are pets allowed at the hotel?</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+             </select>
+            </div>
             <button type="submit" class="btn btn-primary w-100">Add</button>
         </form>
     </div>

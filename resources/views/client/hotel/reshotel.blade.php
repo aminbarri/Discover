@@ -3,7 +3,7 @@
 @section('main', 'Reservation Hotel')
 
 @section('content')
-    <div class="hotel-details container my-4">
+    <div class="hotel-details container my-4 shadow-sm p-4">
     <!-- Images -->
     <div class="row g-2 mb-4">
         <div class="col-md-8">
@@ -50,11 +50,11 @@
     <div class="row text-muted mb-4">
         <div class="row text-muted mb-4">
         @if($hotel->living_room)
-            <div class="col-md-3"><i class="bi bi-house-door"></i> Coin salon</div>
+            <div class="col-md-3"><i class="bi bi-door-closed-fill"></i> Coin salon</div>
         @endif
 
         @if($hotel->kitchen)
-            <div class="col-md-3"><i class="bi bi-cup-straw"></i> Cuisine</div>
+            <div class="col-md-3"><i class="bi bi-0-circle-fill"></i> Cuisine</div>
         @endif
 
         @if($hotel->free_parking)

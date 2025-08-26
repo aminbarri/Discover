@@ -58,6 +58,53 @@
                 <label for="img3">Image 3</label>
                 <input type="file" class="form-control" id="img3" name="img3">
             </div>
+            <div class="form-group mb-3">
+            <label for="">Living room</label>
+            <select name="living_room" class="form-select" aria-label="Large select example">
+                <option value="1" {{ $hotels->living_room != 0 ? 'selected' : '' }}>Yes</option>
+                <option value="0" {{ $hotels->living_room == 0 ? 'selected' : '' }}>No</option>
+            </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="">Kitchen</label>
+                <select name="kitchen" class="form-select" aria-label="Large select example">
+                    <option value="1" {{ $hotels->kitchen != 0 ? 'selected' : '' }}>Yes</option>
+                    <option value="0" {{ $hotels->kitchen == 0 ? 'selected' : '' }}>No</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="">Parking</label>
+                <select name="free_parking" class="form-select" aria-label="Large select example">
+                    <option value="1" {{ $hotels->free_parking != 0 ? 'selected' : '' }}>Yes</option>
+                    <option value="0" {{ $hotels->free_parking == 0 ? 'selected' : '' }}>No</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="">Swimming Pool</label>
+                <select name="swimming_pool" class="form-select" aria-label="Large select example">
+                    <option value="1" {{ $hotels->swimming_pool != 0 ? 'selected' : '' }}>Yes</option>
+                    <option value="0" {{ $hotels->swimming_pool == 0 ? 'selected' : '' }}>No</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="">Refrigerator</label>
+                <select name="refrigerator" class="form-select" aria-label="Large select example">
+                    <option value="1" {{ $hotels->refrigerator != 0 ? 'selected' : '' }}>Yes</option>
+                    <option value="0" {{ $hotels->refrigerator == 0 ? 'selected' : '' }}>No</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="">Pets</label>
+                <select name="pets_allowed" class="form-select" aria-label="Large select example">
+                    <option value="1" {{ $hotels->pets_allowed != 0 ? 'selected' : '' }}>Yes</option>
+                    <option value="0" {{ $hotels->pets_allowed == 0 ? 'selected' : '' }}>No</option>
+                </select>
+            </div>
 
 
             <button type="submit" class="btn btn-primary w-100">Update</button>

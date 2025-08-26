@@ -59,6 +59,12 @@ class HotelController extends Controller
     $hotel->classe = $request->classe;
     $hotel->location = $request->location;
     $hotel->prix = $request->prix;
+    $hotel->pets_allowed = $request->pets_allowed ?? 0;
+    $hotel->refrigerator = $request->refrigerator ?? 0;
+    $hotel->swimming_pool = $request->swimming_pool ?? 0;
+    $hotel->free_parking = $request->free_parking ?? 0;
+    $hotel->kitchen = $request->kitchen ?? 0;
+    $hotel->living_room = $request->living_room ?? 0;
 
     // Handle image uploads
     if ($request->hasFile('img1')) {
@@ -149,6 +155,13 @@ class HotelController extends Controller
         $updateData['classe'] = $request->classe;
         $updateData['location'] = $request->location;
         $updateData['prix'] = $request->prix;
+        $updateData['prix'] = $request->prix;
+        $updateData['pets_allowed'] = $request->pets_allowed ?? 0;
+        $updateData['refrigerator'] = $request->refrigerator ?? 0;
+        $updateData['swimming_pool'] = $request->swimming_pool ?? 0;
+        $updateData['free_parking'] = $request->free_parking ?? 0;
+        $updateData['kitchen'] = $request->kitchen ?? 0;
+        $updateData['living_room'] = $request->living_room ?? 0;
 
         // Perform the update in one call
         HOTEL::where('id_hotel', $id_hotel)->update($updateData);
