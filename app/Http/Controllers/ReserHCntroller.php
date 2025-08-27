@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\resrhotel;
 use Illuminate\Support\Facades\DB;
-
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail ;
+use App\Mail\reservationMail;
 use Illuminate\Support\Facades\Auth;
 class ReserHCntroller extends Controller
 {
@@ -45,12 +48,26 @@ class ReserHCntroller extends Controller
         $resrhotel->date_reservartion= now();
         $resrhotel->id_client  = Auth::id();
 
+         $data = [
+        'title' => 'Discover Draa-Tafilalet',
+        'date' => date('m/d/Y'),
+        'name' => Auth::user()->name,
+        'email' => Auth::user()->email,
+        'phone' => '+212 600 000 000',
+        'type' => $request->type,
+        'nmbre_perssone' => $request->nmbre_perssone,
+        'date_debut' => $request->date_debut,
+        'date_fin' => $request->date_fin
+    ];
+
+        $pdf = PDF::loadView('receipt.hotelRecu', $data);
+        $fileName = 'reservation_' . time() . '.pdf';
+        Storage::put('pdfs/' .Auth::id().'/'. $fileName, $pdf->output());
+        $resrhotel->receipt ='pdfs/'.Auth::id().'/'.$fileName;
         $resrhotel->save();
+        Mail::to(Auth::user()->email)->send(new reservationMail(Auth::user()->email,$resrhotel->receipt));
 
         return redirect()->to('/')->with('success', 'reservation done.');
-
-
-
 
     }
 
