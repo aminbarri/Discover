@@ -21,7 +21,7 @@
                     <a class="nav-link fw-medium {{ request()->routeIs('hotels_index') ? 'active' : '' }}" href="{{ route('hotels_index') }}">HOTELS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-medium {{ request()->routeIs('dest') ? 'active' : '' }}" href="{{ route('dest') }}">DESTINATION</a>
+                    <a class="nav-link fw-medium {{ request()->routeIs('dest_client') ? 'active' : '' }}" href="{{ route('dest_client') }}">DESTINATION</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link fw-medium {{ request()->routeIs('restau_client') ? 'active' : '' }}" href="{{ route('restau_client') }}">RESTAURANT</a>

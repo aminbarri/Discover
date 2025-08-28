@@ -37,7 +37,7 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout')->middl
 
 Route::get('/hotel', [HotelController::class, 'show'])->name('hotels_show')->middleware('auth');
 Route::get('/hotels', [HotelController::class, 'index'])->name('hotels_index');
-Route::get('/reservationh/{id_hotel}', [HotelController::class, 'showsingle'])->name('reserver_hotel');
+Route::get('/reservationh/{id_hotel}', [HotelController::class, 'showsingle'])->name('reserver_hotel')->middleware('auth');
 Route::get('/hotel/create', [HotelController::class, 'create'])->name('hotels_create')->middleware('auth');
 Route::post('/hotel/store', [HotelController::class, 'store'])->name('hotels_store')->middleware('auth');
 Route::delete('/hotel/{id}', [HotelController::class, 'destroy'])->name('hotels_destroy')->middleware('auth');
@@ -61,6 +61,7 @@ Route::post('/destination/store', [DestinationController::class, 'store'])->name
 Route::delete('/destination/{id}', [DestinationController::class, 'destroy'])->name('dest_destroy')->middleware('auth');
 Route::get('/destination/{id}/edit', [DestinationController::class, 'edit'])->name('dest_edit')->middleware('auth');
 Route::put('/destination/{id}', [DestinationController::class, 'update'])->name('dest_update')->middleware('auth');
+Route::get('/destinationclient', [DestinationController::class, 'index_client'])->name('dest_client');
 
 
 Route::get('/voyage', [VoyageController::class, 'show'])->name('voyage')->middleware('auth');

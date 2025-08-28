@@ -10,11 +10,15 @@ class DestinationController extends Controller
 {
     public function show(){
 
-        $user = Auth::user();
-
-
+      $user = Auth::user();
       $dest = Destin::where('id_user', $user->id)->get();
         return view('admin.desti.list',compact('dest'));
+    }
+    public function index_client(){
+        $destination = Destin::all();
+        return view(
+            'client.destination.listDestnation',compact('destination')
+        );
     }
 
     public function create(){

@@ -12,21 +12,23 @@ use App\Mail\reservationMail;
 use Illuminate\Support\Facades\Auth;
 class ReserHCntroller extends Controller
 {
+    public function show()
+    {
+        $statuses = [
+            'reseration' => 'En cours',
+            'accepte' => 'Acceptée',
+            'refuse' => 'Refusée',
+        ];
 
-    public function show(){
+        $data = [];
+        foreach ($statuses as $key => $status) {
+            $data[$key] = resrhotel::with('user')
+                ->where('statu', $status)
+                ->get();
+        }
 
-        $reseration =DB::table('reservation_hotel')->where('statu', 'En cours')
-        ->leftJoin('users', 'reservation_hotel.id_client', '=', 'users.id')
-        ->get();
-        $accepte =DB::table('reservation_hotel')->where('statu', 'Acceptée')
-        ->leftJoin('users', 'reservation_hotel.id_client', '=', 'users.id')
-        ->get();
-        $refuse =DB::table('reservation_hotel')->where('statu', 'Refusée')
-        ->leftJoin('users', 'reservation_hotel.id_client', '=', 'users.id')
-        ->get();
-        return view('admin.reservation.hotel.list',compact('reseration','accepte','refuse'));
+        return view('admin.reservation.hotel.list', $data);
     }
-
 
     public function store(Request $request){
 
@@ -48,17 +50,17 @@ class ReserHCntroller extends Controller
         $resrhotel->date_reservartion= now();
         $resrhotel->id_client  = Auth::id();
 
-         $data = [
+        $data = [
         'title' => 'Discover Draa-Tafilalet',
         'date' => date('m/d/Y'),
         'name' => Auth::user()->name,
         'email' => Auth::user()->email,
-        'phone' => '+212 600 000 000',
+        'phone' => $request->phone,
         'type' => $request->type,
         'nmbre_perssone' => $request->nmbre_perssone,
         'date_debut' => $request->date_debut,
         'date_fin' => $request->date_fin
-    ];
+        ];
 
         $pdf = PDF::loadView('receipt.hotelRecu', $data);
         $fileName = 'reservation_' . time() . '.pdf';
@@ -68,7 +70,6 @@ class ReserHCntroller extends Controller
         Mail::to(Auth::user()->email)->send(new reservationMail(Auth::user()->email,$resrhotel->receipt));
 
         return redirect()->to('/')->with('success', 'reservation done.');
-
     }
 
     public function edit($id_resh ){
@@ -98,12 +99,9 @@ class ReserHCntroller extends Controller
         $updateData['date_fin'] = $request->date_fin;
         $updateData['statu'] = $request->statu;
 
-
-
         resrhotel::where('id_resh', $id_resh)->update($updateData);
         return redirect()->to('/Resirvation/list')
         ->with('message','the Reservation has been edited');
-
     }
     public function destroy($id_resh){
 
@@ -111,5 +109,5 @@ class ReserHCntroller extends Controller
         ->delete();
            return redirect()->to('/Resirvation/list')
            ->with('message','the Reservation has been Deleted');
-       }
+    }
 }
