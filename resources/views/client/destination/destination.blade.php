@@ -1,30 +1,65 @@
+@extends('app')
 
-<div class="col-md-4 mb-4">
-    <div class="card shadow-sm border-0 rounded-3 h-100">
-        {{-- Image --}}
-        @if($destination->img1)
-            <img src="{{ asset('storage/'.$destination->img1) }}" class="card-img-top rounded-top" alt="{{ $destination->nom }}">
-        @else
-            <img src="{{ asset('img/default.jpg') }}" class="card-img-top rounded-top" alt="Default">
-        @endif
+@section('main', 'Destination list')
 
-        {{-- Card Body --}}
-        <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-bold">{{ $destination->nom }}</h5>
-            <p class="text-muted mb-1">
-                <i class="bi bi-geo-alt-fill"></i> {{ $destination->ville }}, {{ $destination->province }}
-            </p>
-            <p class="card-text text-truncate" style="max-width: 100%;">{{ $destination->description }}</p>
+@section('content')
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+        <div class="row g-0">
 
-            {{-- Footer --}}
-            <div class="mt-auto d-flex justify-content-between align-items-center">
-                <small class="text-muted">
-                    Updated {{ $destination->date_modification->format('d M Y') }}
-                </small>
-                <a href="{{ route('restaurants.show', $destination->id) }}" class="btn btn-sm btn-primary">
-                    View
-                </a>
+            {{-- Images Carousel --}}
+            <div class="col-lg-5">
+                <div id="destinationCarousel" class="carousel slide h-100" data-bs-ride="carousel">
+                    <div class="carousel-inner h-100">
+                        @if($destination->img1)
+                            <div class="carousel-item active">
+                                <img src="{{ asset($destination->img1) }}" class="d-block w-100 h-100 object-fit-cover" alt="Image 1">
+                            </div>
+                        @endif
+                        @if($destination->img2)
+                            <div class="carousel-item {{ !$destination->img1 ? 'active' : '' }}">
+                                <img src="{{ asset($destination->img2) }}" class="d-block w-100 h-100 object-fit-cover" alt="Image 2">
+                            </div>
+                        @endif
+                        @if($destination->img3)
+                            <div class="carousel-item {{ (!$destination->img1 && !$destination->img2) ? 'active' : '' }}">
+                                <img src="{{ asset($destination->img3) }}" class="d-block w-100 h-100 object-fit-cover" alt="Image 3">
+                            </div>
+                        @endif
+                    </div>
+                    @if($destination->img2 || $destination->img3)
+                        <button class="carousel-control-prev" type="button" data-bs-target="#destinationCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#destinationCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    @endif
+                </div>
+            </div>
+
+            {{-- Information --}}
+            <div class="col-lg-7">
+                <div class="card-body p-4">
+                    <h2 class="fw-bold">{{ $destination->nom }}</h2>
+                    <p class="text-muted mb-2">
+                        <i class="bi bi-geo-alt-fill"></i> {{ $destination->ville }}, {{ $destination->province }}
+                    </p>
+
+                    <hr>
+
+                    <h5 class="fw-semibold">Description</h5>
+                    <p class="text-justify">{{ $destination->description }}</p>
+
+                    <h6 class="fw-semibold mt-3">Location</h6>
+                    <p class="text-break">{{ $destination->location }}</p>
+
+                    <p class="text-muted small mt-4">
+                        Last updated: {{ $destination->date_modification }}
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+@endsection

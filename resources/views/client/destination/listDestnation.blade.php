@@ -7,7 +7,6 @@
     @foreach ($destination as $dest)
         <div class="card shadow-lg border-0 rounded-3 mt-3">
             <div class="row g-0">
-                {{-- Images Section --}}
             <div class="col-md-5">
                 <div id="carouselImages" class="carousel slide h-100" data-bs-ride="carousel">
                     <div class="carousel-inner h-100">
@@ -36,21 +35,15 @@
                 </div>
             </div>
 
-            {{-- Information Section --}}
-
             <div class="col-md-7">
                 <div class="card-body">
                     <h2 class="card-title fw-bold">{{ $dest->nom }}</h2>
                     <p class="text-muted mb-1">
-                        <i class="bi bi-geo-alt-fill"></i> {{ $dest->ville }}, {{ $dest->province }}
+                        <i class="bi bi-geo-alt-fill"></i> {{ $dest->ville }}
                     </p>
-                    <p class="card-text mt-3">{{ $dest->description }}</p>
+                    <p class="card-text mt-3">{{ \Illuminate\Support\Str::limit($dest->description, 70) }}</p>
 
-                    <div class="mt-3">
-                        <h6 class="fw-bold">Location:</h6>
-                        <p class="text-break">{{ $dest->location }}</p>
-                    </div>
-                    <a href="" class="text-decoration-none ">Read More</a>
+                    <a href="{{ route('show_destination', $dest->id_des) }}" class="text-decoration-none ">Read More</a>
                 </div>
             </div>
 

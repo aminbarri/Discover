@@ -62,6 +62,7 @@ Route::delete('/destination/{id}', [DestinationController::class, 'destroy'])->n
 Route::get('/destination/{id}/edit', [DestinationController::class, 'edit'])->name('dest_edit')->middleware('auth');
 Route::put('/destination/{id}', [DestinationController::class, 'update'])->name('dest_update')->middleware('auth');
 Route::get('/destinationclient', [DestinationController::class, 'index_client'])->name('dest_client');
+Route::get('/destinationclient/{id}', [DestinationController::class, 'show_destination'])->name('show_destination');
 
 
 Route::get('/voyage', [VoyageController::class, 'show'])->name('voyage')->middleware('auth');

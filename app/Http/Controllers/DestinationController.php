@@ -20,6 +20,10 @@ class DestinationController extends Controller
             'client.destination.listDestnation',compact('destination')
         );
     }
+    public function show_destination($id_des){
+        $destination = Destin::findOrFail($id_des);
+        return view('client.destination.destination',compact('destination'));
+    }
 
     public function create(){
         return view('admin.desti.desti');
