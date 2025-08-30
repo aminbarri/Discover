@@ -27,6 +27,9 @@
                     <a class="nav-link fw-medium {{ request()->routeIs('restau_client') ? 'active' : '' }}" href="{{ route('restau_client') }}">RESTAURANT</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link fw-medium {{ request()->routeIs('voyage_index') ? 'active' : '' }}" href="{{ route('voyage_index') }}">VOYAGE</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link fw-medium {{ request()->routeIs('message_create') ? 'active' : '' }}" href="{{ route('message_create') }}">CONTACT</a>
                 </li>
 

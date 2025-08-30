@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('travelRes', function (Blueprint $table) {
             $table->id('id_vor');
-            $table->unsignedBigInteger('id_voyage'); // Reference to the hotel, consider changing to unsignedBigInteger if your hotel ID is a big integer
+            $table->unsignedBigInteger('id_voyage');
             $table->unsignedBigInteger('id_client');
             $table->string('phone', 90);
             $table->integer('nmbre_perssone');
@@ -21,7 +21,7 @@ return new class extends Migration
 
             $table->foreign('id_voyage')->references('id_voy')->on('voyage')->onDelete('cascade');
             $table->foreign('id_client')->references('id')->on('users')->onDelete('cascade');
-       
+
         });
     }
 

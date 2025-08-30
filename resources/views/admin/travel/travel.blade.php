@@ -48,7 +48,10 @@
             <label for="dure" class="form-label">Dure </label>
             <input type="number" class="form-control" id="dure" name="dure" required>
         </div>
-
+        <div class="mb-3">
+            <label for="available_seats" class="form-label">Available Seats</label>
+            <input type="number" class="form-control" id="available_seats" name="available_seats" required>
+        </div>
         <div class="mb-3">
             <label for="img" class="form-label">Image</label>
             <input type="file" class="form-control" id="img" name="img">

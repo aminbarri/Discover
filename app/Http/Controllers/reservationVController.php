@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\resrvoyage;
+use App\Models\voyage;
 use Illuminate\Support\Facades\Auth;
 
 class reservationVController extends Controller
@@ -28,7 +29,12 @@ class reservationVController extends Controller
         $resrvoyage->phone = $request->phone;
         $resrvoyage->nmbre_perssone = $request->nmbre_perssone;
         $resrvoyage->id_client = Auth::id();
+        $number_of_reserve = resrvoyage::where('id_voyage', $request->id_voyage)->sum('nmbre_perssone');
+        $available_seats = voyage::where('id_voy', $request->id_voyage)->value('available_seats');
 
+        if($number_of_reserve + $request->nmbre_perssone > $available_seats) {
+            return redirect()->back()->with('error', 'Not enough available seats.'. $available_seats);
+        }
         $resrvoyage->save();
         return redirect()->to('/')->with('success', 'reservation done.');
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\voyage;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\resrvoyage;
 use Illuminate\Support\Facades\Auth;
 
 class VoyageController extends Controller
@@ -14,11 +14,15 @@ class VoyageController extends Controller
     public function index(){
 
         $voyage=DB::table('voyage')->get();
+
         return view ('client.voyage.voyage',compact('voyage'));
     }
     public function showsingle($id_voy){
         $voyage = voyage::where('id_voy',$id_voy)->first();
-        return view('client.voyage.resvoyage',compact('voyage'));
+         $number_of_reserve = resrvoyage::where('id_voyage', $voyage->id_voy)->sum('nmbre_perssone');
+        $available_seats = $voyage->available_seats - $number_of_reserve;
+
+        return view('client.voyage.resvoyage',compact('voyage','available_seats'));
     }
     public function  show(){
         $user = Auth::user();
@@ -41,6 +45,7 @@ class VoyageController extends Controller
                 'date_depart' => 'required|date',
                 'heure_depart' => 'required|date_format:H:i',
                 'dure' => 'required|integer',
+                'available_seats' => 'required|integer|min:0',
                 'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Max size of 2MB for image
                 'carte' => 'nullable|string|max:1000',
                 'prix' => 'required|numeric|min:0',
@@ -55,6 +60,7 @@ class VoyageController extends Controller
             $voyage->dure = $request->dure;
             $voyage->carte = $request->carte;
             $voyage->prix = $request->prix;
+            $voyage->available_seats = $request->available_seats;
             $voyage->id_user = Auth::id();
             if ($request->hasFile('img')) {
                 $img = $request->file('img');
@@ -80,6 +86,7 @@ class VoyageController extends Controller
         'date_depart' => 'required|date',
         'heure_depart' => 'required|date_format:H:i',
         'dure' => 'required|integer',
+        'available_seats' => 'required|integer|min:0',
         'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Max size of 2MB for image
         'carte' => 'nullable|string|max:1000',
         'prix' => 'required|numeric|min:0',
@@ -90,7 +97,7 @@ class VoyageController extends Controller
         $img = $request->file('img');
         $imgName = time() . '_3.' . $img->getClientOriginalExtension();
         $img->move(public_path('img/voyage'), $imgName);
-        $updateData['img']->img = 'img/voyage/' . $imgName;
+        $updateData['img']= 'img/voyage/' . $imgName;
     }
     $updateData['ville_depart'] = $request->ville_depart;
     $updateData['ville_arrive'] = $request->ville_arrive;
@@ -100,8 +107,7 @@ class VoyageController extends Controller
     $updateData['dure'] = $request->dure;
     $updateData['carte'] = $request->carte;
     $updateData['prix'] = $request->prix;
-
-
+    $updateData['available_seats'] = $request->available_seats;
 
     VOYAGE::where('id_voy', $id_voy)->update($updateData);
     return redirect()->to('/voyage')
