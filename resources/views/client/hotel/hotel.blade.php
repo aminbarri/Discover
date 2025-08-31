@@ -21,7 +21,7 @@
                         @if($hotels->img1)
                             <img src="{{ asset($hotels->img1) }}" class="img-fluid h-100 w-100 object-fit-cover" alt="Hotel Image">
                         @else
-                            <img src="{{ asset('img/default-hotel.jpg') }}" class="img-fluid h-100 w-100 object-fit-cover" alt="Hotel Image">
+                            <img src="{{ asset('img/logo.png') }}" class="img-fluid h-100 w-100 object-fit-cover" alt="Hotel Image">
                         @endif
                     </div>
 

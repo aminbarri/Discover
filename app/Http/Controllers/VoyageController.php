@@ -46,7 +46,7 @@ class VoyageController extends Controller
                 'heure_depart' => 'required|date_format:H:i',
                 'dure' => 'required|integer',
                 'available_seats' => 'required|integer|min:0',
-                'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Max size of 2MB for image
+                'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'carte' => 'nullable|string|max:1000',
                 'prix' => 'required|numeric|min:0',
             ]
@@ -69,8 +69,6 @@ class VoyageController extends Controller
                 $voyage->img = 'img/voyage/' . $imgName;
             }
             $voyage->save();
-
-        // Redirect or return success message
         return redirect()->to('/voyage')->with('success', 'Hotel created successfully.');
     }
     public function edit($id_voy){

@@ -7,11 +7,11 @@
     <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
         <div class="row g-0">
 
-                    <div class="col-lg-5">
+            <div class="col-lg-5">
                 @if($voyage->img)
                     <img src="{{ asset($voyage->img) }}" class="img-fluid h-100 object-fit-cover" alt="Voyage Image">
                 @else
-                    <img src="{{ asset('img/default.jpg') }}" class="img-fluid h-100 object-fit-cover" alt="Default">
+                    <img src="{{ asset('img/LOGO.PNG') }}" class="img-fluid h-100 object-fit-cover" alt="Default">
                 @endif
             </div>
 
