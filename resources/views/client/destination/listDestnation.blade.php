@@ -3,7 +3,9 @@
 @section('main', 'Destination list')
 
 @section('content')
-<div class="container my-4">
+@include('layouts.hero', ['title' => 'destinations'])
+
+<div class="container my-4" id="destinations">
     @foreach ($destination as $dest)
         <div class="card shadow-lg border-0 rounded-3 mt-3">
             <div class="row g-0">

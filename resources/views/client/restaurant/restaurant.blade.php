@@ -1,9 +1,10 @@
 @extends('app')
 
 @section('main', 'Hotel list')
-
 @section('content')
-    <div class="container my-5">
+@include('layouts.hero', ['title' => 'restaurants'])
+
+    <div class="container my-5" id="restaurants">
         @foreach ($restau as $restaurant)
             <div class="card mb-3 shadow-sm border-0" style="max-width: 100%;">
                 <div class="row g-0">

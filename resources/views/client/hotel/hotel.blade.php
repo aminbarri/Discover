@@ -3,11 +3,8 @@
 @section('main', 'Hotel list')
 
 @section('content')
-
-
-
-
-    <div class="container my-5">
+@include('layouts.hero', ['title' => 'hotels'])
+<div class="container my-5" id="hotels">
         @php
 
         foreach ($hotel as $hotels) {

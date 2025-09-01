@@ -2,7 +2,9 @@
 @section('main', 'Voyage')
 
 @section('content')
-<div class="container my-4">
+@include('layouts.hero', ['title' => 'voyages'])
+
+<div class="container my-4" id="voyages">
     <div class="row">
        @foreach ($voyage as $voyages)
             <div class="col-md-4 mb-4">

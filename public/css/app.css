@@ -607,3 +607,18 @@ ul li:hover > ul {
   font-weight: 500;
   font-style: italic;
 }
+.contact-header{
+    background-image: url('/img/back.jpg');
+    padding: 40px;
+    height: 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.voyage-header{
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 70vh;
+}
