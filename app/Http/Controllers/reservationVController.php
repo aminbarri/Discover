@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\resrvoyage;
 use App\Models\voyage;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\reservationMail;
+use Illuminate\Support\Facades\Mail;
 
 class reservationVController extends Controller
 {
@@ -35,7 +39,24 @@ class reservationVController extends Controller
         if($number_of_reserve + $request->nmbre_perssone > $available_seats) {
             return redirect()->back()->with('error', 'Not enough available seats.'. $available_seats);
         }
+
+         $data = [
+        'title' => 'Discover Draa-Tafilalet',
+        'date' => date('m/d/Y'),
+        'name' => Auth::user()->name,
+        'email' => Auth::user()->email,
+        'phone' => $request->phone,
+        'type' => $request->type,
+        'nmbre_perssone' => $request->nmbre_perssone,
+        'date_debut' => '77/44/12',
+        'date_fin' =>'77/44/12'
+        ];
+        $pdf = PDF::loadView('receipt.voyageRecu', $data);
+        $fileName = 'reservation_' . time() . '.pdf';
+        Storage::put('pdfs/' .Auth::id().'/'. $fileName, $pdf->output());
+        $resrvoyage->receipt ='pdfs/'.Auth::id().'/'.$fileName;
         $resrvoyage->save();
+        Mail::to(Auth::user()->email)->send(new reservationMail(Auth::user()->email,$resrvoyage->receipt));
         return redirect()->to('/')->with('success', 'reservation done.');
 
     }

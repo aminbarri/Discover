@@ -10,24 +10,23 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail ;
 use App\Mail\reservationMail;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 class ReserHCntroller extends Controller
 {
     public function show()
     {
-        $statuses = [
-            'reseration' => 'En cours',
-            'accepte' => 'Acceptée',
-            'refuse' => 'Refusée',
-        ];
+       $reseration =DB::table('reservation_hotel')->where('statu', 'En cours')
+        ->leftJoin('users', 'reservation_hotel.id_client', '=', 'users.id')
+        ->get();
+        $accepte =DB::table('reservation_hotel')->where('statu', 'Acceptée')
+        ->leftJoin('users', 'reservation_hotel.id_client', '=', 'users.id')
+        ->get();
+        $refuse =DB::table('reservation_hotel')->where('statu', 'Refusée')
+        ->leftJoin('users', 'reservation_hotel.id_client', '=', 'users.id')
+        ->get();
+        return view('admin.reservation.hotel.list',compact('reseration','accepte','refuse'));
 
-        $data = [];
-        foreach ($statuses as $key => $status) {
-            $data[$key] = resrhotel::with('user')
-                ->where('statu', $status)
-                ->get();
-        }
-
-        return view('admin.reservation.hotel.list', $data);
     }
 
     public function store(Request $request){
@@ -50,25 +49,45 @@ class ReserHCntroller extends Controller
         $resrhotel->date_reservartion= now();
         $resrhotel->id_client  = Auth::id();
 
-        $data = [
-        'title' => 'Discover Draa-Tafilalet',
-        'date' => date('m/d/Y'),
-        'name' => Auth::user()->name,
-        'email' => Auth::user()->email,
-        'phone' => $request->phone,
-        'type' => $request->type,
-        'nmbre_perssone' => $request->nmbre_perssone,
-        'date_debut' => $request->date_debut,
-        'date_fin' => $request->date_fin
-        ];
 
-        $pdf = PDF::loadView('receipt.hotelRecu', $data);
-        $fileName = 'reservation_' . time() . '.pdf';
-        Storage::put('pdfs/' .Auth::id().'/'. $fileName, $pdf->output());
-        $resrhotel->receipt ='pdfs/'.Auth::id().'/'.$fileName;
+        $number_of_reserve = resrhotel::where('id_hotel',$request->id_hotel)
+            ->where('date_fin','<=',$request->date_fin)
+            ->where('date_debut','>=',$request->date_debut)
+            ->where('statu','Acceptée')
+            ->count();
+        $nuber_room = DB::table('hotels')->where('id_hotel',$request->id_hotel)->value('chambre');
+
+        if($number_of_reserve > $nuber_room) {
+                $resrhotel->statu = 'Refusée';
+                $hotel = DB::table('hotels')->where('id_hotel', $request->id_hotel)->first();
+                $data = [
+                'title' => 'Discover Draa-Tafilalet',
+                'date'  => date('m/d/Y'),
+                'hotel_nom'      => $hotel->nom,
+                'hotel_ville'    => $hotel->ville,
+                'hotel_location' => $hotel->location,
+                'hotel_prix'     => $hotel->prix,
+                'reservation_id_client'       => $request->id_client,
+                'reservation_phone'           => $request->phone,
+                'reservation_type'            => $request->type,
+                'reservation_nmbre_perssone'  => $request->nmbre_perssone,
+                'reservation_date_debut'      => $request->date_debut,
+                'reservation_date_fin'        => $request->date_fin,
+                'reservation_date_reservation'=> $request->date_reservartion,
+                'reservation_statu'           => 'Refusée The rooms are full',
+                ];
+
+                $pdf = PDF::loadView('receipt.hotelRecu', $data);
+                $fileName = 'reservation_' . time() . '.pdf';
+                Storage::put('pdfs/' .Auth::id().'/'. $fileName, $pdf->output());
+                $resrhotel->receipt ='pdfs/'.Auth::id().'/'.$fileName;
+                $resrhotel->save();
+                Mail::to(Auth::user()->email)->send(new reservationMail(Auth::user()->email,$resrhotel->receipt));
+
+                return redirect()->back()->with('error', 'Not enough available rooms.');
+            }
+
         $resrhotel->save();
-        Mail::to(Auth::user()->email)->send(new reservationMail(Auth::user()->email,$resrhotel->receipt));
-
         return redirect()->to('/')->with('success', 'reservation done.');
     }
 
@@ -98,6 +117,33 @@ class ReserHCntroller extends Controller
         $updateData['date_debut'] = $request->date_debut;
         $updateData['date_fin'] = $request->date_fin;
         $updateData['statu'] = $request->statu;
+        $res = resrhotel::where('id_resh', $id_resh)->first();
+        $hotel = DB::table('hotels')->where('id_hotel', $res->id_hotel)->first();
+        $data = [
+            'title' => 'Discover Draa-Tafilalet',
+            'date'  => date('m/d/Y'),
+            'hotel_nom'      => $hotel->nom,
+            'hotel_ville'    => $hotel->ville,
+            'hotel_location' => $hotel->location,
+            'hotel_prix'     => $hotel->prix *Carbon::parse($request->date_debut)->diffInDays(Carbon::parse($request->date_fin)),
+            'reservation_id_client'       => Auth::user()->id,
+            'reservation_phone'           => $request->phone,
+            'reservation_type'            => $request->type,
+            'reservation_nmbre_perssone'  => $request->nmbre_perssone,
+            'reservation_date_debut'      => $request->date_debut,
+            'reservation_date_fin'        => $request->date_fin,
+            'reservation_date_reservation'=> $request->date_reservartion,
+            'reservation_statu'           => $request->statu,
+        ];
+        if($res->statu != $request->statu){
+            $pdf = PDF::loadView('receipt.hotelRecu', $data);
+            $fileName = 'reservation_' . time() . '.pdf';
+            Storage::put('pdfs/' .Auth::id().'/'. $fileName, $pdf->output());
+            $updateData['receipt'] ='pdfs/'.Auth::id().'/'.$fileName;
+            resrhotel::where('id_resh', $id_resh)->update($updateData);
+            Mail::to(Auth::user()->email)->send(new reservationMail(Auth::user()->email,$updateData['receipt']));
+            return redirect()->to('/Resirvation/list')->with('message','the Reservation has been edited');
+        }
 
         resrhotel::where('id_resh', $id_resh)->update($updateData);
         return redirect()->to('/Resirvation/list')

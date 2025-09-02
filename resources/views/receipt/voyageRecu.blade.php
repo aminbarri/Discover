@@ -45,7 +45,7 @@
         }
         .label {
             font-weight: bold;
-            width: 180px;
+            width: 150px;
             display: inline-block;
         }
     </style>
@@ -61,23 +61,18 @@
     </div>
 
     <div class="info">
-        <h3>Hotel Information</h3>
-        <div class="row"><span class="label">Hotel Name:</span> {{ $hotel_nom }}</div>
-        <div class="row"><span class="label">City:</span> {{ $hotel_ville }}</div>
-        <div class="row"><span class="label">Location:</span> {{ $hotel_location }}</div>
-        <div class="row"><span class="label">Totale Price :</span> {{ $hotel_prix }} DH</div>
+        <h3>Client Information</h3>
+        <div class="row"><span class="label">Name:</span> {{ $name }}</div>
+        <div class="row"><span class="label">Email:</span> {{ $email }}</div>
+        <div class="row"><span class="label">Phone:</span> {{ $phone }}</div>
     </div>
 
     <div class="info">
         <h3>Reservation Details</h3>
-        <div class="row"><span class="label">Client ID:</span> {{ $reservation_id_client }}</div>
-        <div class="row"><span class="label">Phone:</span> {{ $reservation_phone }}</div>
-        <div class="row"><span class="label">Type:</span> {{ $reservation_type }}</div>
-        <div class="row"><span class="label">Number of Persons:</span> {{ $reservation_nmbre_perssone }}</div>
-        <div class="row"><span class="label">Start Date:</span> {{ $reservation_date_debut }}</div>
-        <div class="row"><span class="label">End Date:</span> {{ $reservation_date_fin }}</div>
-        <div class="row"><span class="label">Status:</span> {{ ucfirst($reservation_statu) }}</div>
-
+        <div class="row"><span class="label">Type:</span> {{ $type }}</div>
+        <div class="row"><span class="label">Number of Persons:</span> {{ $nmbre_perssone }}</div>
+        <div class="row"><span class="label">Start Date:</span> {{ $date_debut }}</div>
+        <div class="row"><span class="label">End Date:</span> {{ $date_fin }}</div>
     </div>
 </body>
 </html>
