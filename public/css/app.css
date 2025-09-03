@@ -622,3 +622,33 @@ ul li:hover > ul {
     background-size: cover;
     height: 70vh;
 }
+.card_of_hero{
+
+    background-size: cover;
+    background-position: center;
+    width: 280px;
+    height: 280px;
+    position: relative;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+.card_of_hero:hover{
+    opacity: 0.75;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.inside_card_hero {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    width: 100%;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
