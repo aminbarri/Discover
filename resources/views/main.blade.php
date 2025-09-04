@@ -1,7 +1,7 @@
 
 @extends('app')
 
-@section('main', 'Main')
+@section('main', 'Home')
 @section('content')
     <div class="center_bar">
         <div class="d-flex flex-column min-vh-100 ">

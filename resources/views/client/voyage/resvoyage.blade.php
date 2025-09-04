@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('main', 'Reservation Voyage')
+@section('main', 'Reservation Trip')
 
 @section('content')
 <div class="container my-5">

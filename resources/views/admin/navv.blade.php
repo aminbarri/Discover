@@ -5,7 +5,7 @@
                  <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo" width= '108px'>
                 </a>
             </div>
-            <div class="dropdown dropstart">
+            <div class="dropdown dropstart cursor-pointer">
                 @if (auth()->user()->img)
                  <img class=" rounded-circle " style="width: 50px; height: 50px;" src="{{asset(auth()->user()->img)}}" alt="" id="dropdownUser12" data-bs-toggle="dropdown" aria-expanded="false">
                 @else

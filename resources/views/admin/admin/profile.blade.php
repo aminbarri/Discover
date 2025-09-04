@@ -28,7 +28,6 @@
         </div>
         <div class="card-body d-flex flex-row">
             <div class="w-50">
-                <p><strong>ID:</strong> {{ $profile->id }}</p>
                 <p><strong>Name:</strong> {{ $profile->name }}</p>
                 <p><strong>Email:</strong> {{ $profile->email }}</p>
                 <p><strong>Email Verified At:</strong> {{ $profile->email_verified_at ?? 'Not Verified' }}</p>

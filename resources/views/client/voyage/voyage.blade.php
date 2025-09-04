@@ -1,5 +1,5 @@
 @extends('app')
-@section('main', 'Voyage')
+@section('main', 'Trips')
 
 @section('content')
 @include('layouts.hero', ['title' => 'voyages'])

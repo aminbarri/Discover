@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('main', 'Hotel list')
+@section('main', 'Restaurants')
 @section('content')
 @include('layouts.hero', ['title' => 'restaurants'])
 
@@ -47,12 +47,11 @@
                             <p class="text-muted mb-2"><i class="bi bi-geo-alt-fill"></i> {{ $restaurant->ville }},
                                 {{ $restaurant->province }}</p>
                             <p class="card-text">{{ Str::limit($restaurant->description, 100) }}</p>
-                            <p class="mb-2"><i class="bi bi-map"></i> <a href="{{ $restaurant->carte }}" target="_blank">Voir
-                                    sur la carte</a></p>
+                            <p class="mb-2"><i class="bi bi-map"></i> <a href="{{ $restaurant->carte }}" target="_blank">View on Map</a></p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-success">Ouvert</span>
+                                <span class="badge bg-success">Open</span>
                                 <a href="{{route('show_single_rest', $restaurant->id_rest)}}"
-                                    class="btn btn-primary btn-sm">Voir détails</a>
+                                    class="btn btn-primary btn-sm">View Details</a>
                             </div>
                         </div>
                     </div>

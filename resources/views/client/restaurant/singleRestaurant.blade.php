@@ -52,7 +52,7 @@
 
         <!-- List of plats -->
         <div class="p-4">
-            <h4 class="mb-3">Plats disponibles</h4>
+            <h4 class="mb-3">Available Dishes</h4>
             <div class="row g-3">
                 @forelse ($plats as $plat)
                     <div class="col-6 col-md-4 col-lg-3">
@@ -70,7 +70,7 @@
                     </div>
                 @empty
                     <div class="col-12">
-                        <div class="alert alert-warning">Aucun plat trouvé pour ce restaurant.</div>
+                        <div class="alert alert-warning">No dish found for this restaurant.</div>
                     </div>
                 @endforelse
             </div>

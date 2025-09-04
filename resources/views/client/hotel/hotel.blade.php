@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('main', 'Hotel list')
+@section('main', 'Hotels')
 
 @section('content')
 @include('layouts.hero', ['title' => 'hotels'])
@@ -36,10 +36,14 @@
                             </div>
 
                             <div class="d-flex flex-wrap gap-3 text-muted small">
-                                <span><i class="bi bi-wifi"></i> Wi-Fi gratuit</span>
-                                <span><i class="bi bi-car-front"></i> Parking gratuit</span>
-                                <span><i class="bi bi-cup-hot"></i> Petit déjeuner</span>
-                                <span><i class="bi bi-water"></i> Piscine</span>
+                                <span><i class="bi bi-wifi"></i> Free Wi-Fi</span>
+                                @if($hotels->free_parking)
+                                    <span><i class="bi bi-car-front"></i> Free parking</span>
+                                @endif
+                                <span><i class="bi bi-cup-hot"></i> Breakfast</span>
+                                 @if($hotels->swimming_pool)
+                                   <span><i class="bi bi-water"></i> Swimming pool</span>
+                                @endif
                             </div>
                         </div>
 

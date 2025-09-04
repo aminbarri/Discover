@@ -50,27 +50,27 @@
     <div class="row text-muted mb-4">
         <div class="row text-muted mb-4">
         @if($hotel->living_room)
-            <div class="col-md-3"><i class="bi bi-door-closed-fill"></i> Coin salon</div>
+            <div class="col-md-3"><i class="bi bi-door-closed-fill"></i> Sitting area</div>
         @endif
 
         @if($hotel->kitchen)
-            <div class="col-md-3"><i class="bi bi-0-circle-fill"></i> Cuisine</div>
+            <div class="col-md-3"><i class="bi bi-0-circle-fill"></i> Kitchen</div>
         @endif
 
         @if($hotel->free_parking)
-            <div class="col-md-3"><i class="bi bi-car-front"></i> Parking gratuit</div>
+            <div class="col-md-3"><i class="bi bi-car-front"></i> Free parking</div>
         @endif
 
         @if($hotel->swimming_pool)
-            <div class="col-md-3"><i class="bi bi-water"></i> Piscine</div>
+            <div class="col-md-3"><i class="bi bi-water"></i> Swimming pool</div>
         @endif
 
         @if($hotel->refrigerator)
-            <div class="col-md-3"><i class="bi bi-archive"></i> Réfrigérateur</div>
+            <div class="col-md-3"><i class="bi bi-archive"></i> Refrigerator</div>
         @endif
 
         @if($hotel->pets_allowed)
-            <div class="col-md-3"><i class="bi bi-paw"></i> Animaux acceptés</div>
+            <div class="col-md-3"><i class="bi bi-paw"></i> Pets allowed</div>
         @endif
     </div>
 
@@ -86,8 +86,8 @@
 
     <!-- Prix -->
     <div class="d-flex justify-content-between align-items-center border-top pt-3">
-        <h4 class="fw-bold">Prix : <span class="text-primary">MAD {{ $hotel->prix }}</span> / nuit</h4>
-        <a href="#reservation" class="btn btn-success reserver">Réserver maintenant</a>
+        <h4 class="fw-bold">Prix : <span class="text-primary">MAD {{ $hotel->prix }}</span> / Night</h4>
+        <a href="#reservation" class="btn btn-success reserver">Book Now</a>
     </div>
 </div>
 
