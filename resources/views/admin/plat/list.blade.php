@@ -40,25 +40,37 @@
                 <td>{{$plats->nom}}</td>
 
                 <td>
-
-                     <a href="{{ route('plat_edit', $plats->id_plat)}}" class="btn btn-warning btn-sm">
-                        <i class="fas fa-edit"></i> Edit
+                    <a href="{{ route('plat_edit', $plats->id_plat)}}" class="btn btn-warning btn-sm">
+                     <i class="fas fa-edit"></i> Edit
                     </a>
-
-
-
-
                 </td>
                 <td>
-                    <form action="{{ route('plat_destroy', $plats->id_plat)}}" method="POST" style="display:inline-block;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i> Delete
-                        </button>
-                    </form>
-                </td>
+                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletePlatModal{{ $plats->id_plat }}">
+                    <i class="fas fa-trash-alt"></i> Delete
+                </button>
 
+                <div class="modal fade" id="deletePlatModal{{ $plats->id_plat }}" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirm Delete</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete <strong>{{ $plats->nom }}</strong>?
+                    </div>
+                    <div class="modal-footer">
+                        <form action="{{ route('plat_destroy', $plats->id_plat) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                        </form>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </td>
             </tr>
             @php
            }

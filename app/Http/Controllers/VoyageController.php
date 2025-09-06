@@ -69,7 +69,7 @@ class VoyageController extends Controller
                 $voyage->img = 'img/voyage/' . $imgName;
             }
             $voyage->save();
-        return redirect()->to('/voyage')->with('success', 'Hotel created successfully.');
+        return redirect()->to('/voyage')->with('success', 'Trip created successfully.');
     }
     public function edit($id_voy){
         return view('admin.travel.edit')
@@ -109,13 +109,13 @@ class VoyageController extends Controller
 
     VOYAGE::where('id_voy', $id_voy)->update($updateData);
     return redirect()->to('/voyage')
-    ->with('success','the post has been edited');
+    ->with('success','the Trip has been edited');
 
     }
     public function destroy($id_voy){
         VOYAGE::where('id_voy' , $id_voy)
         ->delete();
         return redirect()->to('/voyage')
-        ->with('success','the post has been Deleted');
+        ->with('success','Trip has been Deleted');
     }
 }

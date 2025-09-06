@@ -41,26 +41,39 @@
             <tr>
                 <td>{{$restaus->id_rest}}</td>
                 <td>{{$restaus->nom}}</td>
-
                 <td>
-
                      <a href="{{ route('restau_edit', $restaus->id_rest)}}" class="btn btn-warning btn-sm">
                         <i class="fas fa-edit"></i> Edit
                     </a>
-
-
-
-
                 </td>
-                <td>
-                    <form action="{{ route('restau_destroy', $restaus->id_rest)}}" method="POST" style="display:inline-block;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i> Delete
-                        </button>
-                    </form>
-                </td>
+               <td>
+                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteRestauModal{{ $restaus->id_rest }}">
+                    <i class="fas fa-trash-alt"></i> Delete
+                </button>
+
+                <div class="modal fade" id="deleteRestauModal{{ $restaus->id_rest }}" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirm Delete</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete <strong>{{ $restaus->nom }}</strong>?
+                    </div>
+                    <div class="modal-footer">
+                        <form action="{{ route('restau_destroy', $restaus->id_rest) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                        </form>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </td>
+
                 <td>
                     <a href="{{route('plat_list',$restaus->id_rest)}}">show</a>
                 </td>

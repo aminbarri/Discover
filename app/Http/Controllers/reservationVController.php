@@ -77,7 +77,7 @@ class reservationVController extends Controller
 
         resrvoyage::where('id_vor', $id_vor)->update($updateData);
         return redirect()->to('/Resirvationv/list')
-        ->with('message','the Reservation has been edited');
+        ->with('success','the Reservation has been edited');
 
     }
 
@@ -85,6 +85,6 @@ class reservationVController extends Controller
 
         resrvoyage::where('id_vor', $id_vor)->delete();
         return redirect()->to('/Resirvationv/list')
-        ->with('message','the Reservation has been deleted');
+        ->with('success','the Reservation has been deleted');
     }
 }

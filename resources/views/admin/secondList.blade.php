@@ -128,19 +128,19 @@
         <!-- Voyages Management -->
         <li class="nav-item">
             <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#voyagesCollapse" role="button" aria-expanded="false">
-                <span><i class="bi bi-bag me-2"></i>Voyages</span>
+                <span><i class="bi bi-bag me-2"></i>Trips</span>
                 <i class="bi bi-chevron-down"></i>
             </a>
             <div class="collapse {{ request()->routeIs('voyage', 'voyage_index', 'voyage_create', 'voyage_edit', 'voyage_showsingle') ? 'show' : '' }}" id="voyagesCollapse">
                 <ul class="nav flex-column ms-3">
                     <li class="nav-item">
                         <a href="{{ route('voyage') }}" class="nav-link text-white-50 {{ request()->routeIs('voyage') ? 'active' : '' }}">
-                            <i class="bi bi-eye me-2"></i>Manage Voyages
+                            <i class="bi bi-eye me-2"></i>Manage Trips
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('voyage_create') }}" class="nav-link text-white-50 {{ request()->routeIs('voyage_create') ? 'active' : '' }}">
-                            <i class="bi bi-plus-circle me-2"></i>Add Voyage
+                            <i class="bi bi-plus-circle me-2"></i>Add trip
                         </a>
                     </li>
                 </ul>

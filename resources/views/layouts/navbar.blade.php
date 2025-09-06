@@ -53,18 +53,21 @@
                             </a>
                         </li>
                     @endif
-                @endguest
-                <li>
-                    <div class="dropdown dropstart cursor-pointer rounded-circle border ">
-                    @if (auth()->user()->img)
-                    <img class=" rounded-circle " style="width: 35px; height: 35px;" src="{{asset(auth()->user()->img)}}" alt="" id="dropdownUser12" data-bs-toggle="dropdown" aria-expanded="false">
-                    @else
-                    <i class="bi bi-person-circle m-2 fs-2 text-light cursor-pointer " id="dropdownUser12" data-bs-toggle="dropdown" aria-expanded="false"></i>
-                    @endif
 
-                </div>
-                </li>
+                @endguest
+                @auth
+                    <li>
+                        <div class="dropdown dropstart cursor-pointer rounded-circle border ">
+                            @if (auth()->user()->img)
+                            <img class=" rounded-circle " style="width: 35px; height: 35px;" src="{{asset(auth()->user()->img)}}" alt="" id="dropdownUser12" data-bs-toggle="dropdown" aria-expanded="false">
+                            @else
+                            <i class="bi bi-person-circle m-2 fs-2 text-light cursor-pointer " id="dropdownUser12" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                            @endif
+                        </div>
+                    </li>
+                @endauth
             </ul>
         </div>
+
     </div>
 </nav>

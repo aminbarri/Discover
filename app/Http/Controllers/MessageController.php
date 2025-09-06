@@ -44,7 +44,7 @@ class messageController extends Controller
         MESSAGE::where('id_mess' , $id_mess)
         ->delete();
            return redirect()->to('/message')
-           ->with('message','the message has been Deleted');
+           ->with('success','the message has been Deleted');
     }
 
     public function reply($email,Request $request,$id_message_reply,$sujet){

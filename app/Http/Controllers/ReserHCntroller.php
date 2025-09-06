@@ -142,18 +142,18 @@ class ReserHCntroller extends Controller
             $updateData['receipt'] ='pdfs/'.Auth::id().'/'.$fileName;
             resrhotel::where('id_resh', $id_resh)->update($updateData);
             Mail::to(Auth::user()->email)->send(new reservationMail(Auth::user()->email,$updateData['receipt']));
-            return redirect()->to('/Resirvation/list')->with('message','the Reservation has been edited');
+            return redirect()->to('/Resirvation/list')->with('success','the Reservation has been edited');
         }
 
         resrhotel::where('id_resh', $id_resh)->update($updateData);
         return redirect()->to('/Resirvation/list')
-        ->with('message','the Reservation has been edited');
+        ->with('success','the Reservation has been edited');
     }
     public function destroy($id_resh){
 
         resrhotel::where('id_resh' , $id_resh)
         ->delete();
            return redirect()->to('/Resirvation/list')
-           ->with('message','the Reservation has been Deleted');
+           ->with('success','the Reservation has been Deleted');
     }
 }

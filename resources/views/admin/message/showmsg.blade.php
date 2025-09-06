@@ -37,19 +37,36 @@
     </div>
 
 
- <!-- Reply Button -->
     <button class="btn btn-success mt-3 " data-bs-toggle="collapse" data-bs-target="#replyForm">
         <i class="bi bi-reply-fill"></i> Reply
     </button>
 
-    <!-- Delete Button -->
-    <form action="{{ route('messagess.destroy', $messages->id_mess) }}" method="POST" class="d-inline">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn btn-danger mt-3" >
-            <i class="bi bi-trash-fill"></i> Delete
-        </button>
-    </form>
+    <button type="button" class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#deleteMessageModal{{ $messages->id_mess }}">
+        <i class="bi bi-trash-fill"></i> Delete
+    </button>
+
+    <div class="modal fade" id="deleteMessageModal{{ $messages->id_mess }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Confirm Delete</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+            Are you sure you want to delete this message?
+        </div>
+        <div class="modal-footer">
+            <form action="{{ route('messagess.destroy', $messages->id_mess) }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            </form>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
     <div class="collapse mt-2" id="replyForm">
     <form action="{{route('reply_msg',['sujet'=> $messages->sujet ,'email' =>  $messages->email, 'id_message_reply' => $messages->id_mess])}}" method="POST">
         @csrf
