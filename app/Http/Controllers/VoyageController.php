@@ -19,7 +19,7 @@ class VoyageController extends Controller
     }
     public function showsingle($id_voy){
         $voyage = voyage::where('id_voy',$id_voy)->first();
-         $number_of_reserve = resrvoyage::where('id_voyage', $voyage->id_voy)->sum('nmbre_perssone');
+        $number_of_reserve = resrvoyage::where('id_voyage', $voyage->id_voy)->sum('nmbre_perssone');
         $available_seats = $voyage->available_seats - $number_of_reserve;
 
         return view('client.voyage.resvoyage',compact('voyage','available_seats'));

@@ -14,6 +14,8 @@ use App\Http\Controllers\PlatRestauController;
 use App\Http\Controllers\confirmEmailController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\staticController;
+use App\Http\Controllers\SearchController;
+
 
 
 Route::get('/', function () {
@@ -109,3 +111,5 @@ Route::delete('/addplat/{id_plat}/{id_rest}', [PlatRestauController::class, 'des
 
 
 Route::get('/confirmation/{email}', [confirmEmailController::class, 'send_confirmation'])->name('confirmation_email');
+
+Route::get('/search_in_all/{hotles}', [SearchController::class, 'search_hotels'])->name('search_hotels');
